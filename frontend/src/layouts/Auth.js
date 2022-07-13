@@ -17,7 +17,7 @@
 import React from 'react'
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from 'perfect-scrollbar'
-import {Route, Switch} from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 import AuthNavbar from 'components/Navbars/AuthNavbar.js'
 import Footer from 'components/Footer/Footer.js'
@@ -58,7 +58,7 @@ class Pages extends React.Component {
   render() {
     return (
       <>
-        <AuthNavbar />
+        {/* <AuthNavbar /> */}
         <div className='wrapper wrapper-full-page' ref='fullPages'>
           <div className='full-page section-image'>
             <Switch>{this.getRoutes(routes)}</Switch>

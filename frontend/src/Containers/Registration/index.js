@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
 // hooks
-import {useForm} from 'react-hook-form'
+// import {useForm} from 'react-hook-form'
 
 //Components
 import {
@@ -65,8 +65,8 @@ function Registration() {
                         value={category}
                         onChange={value => setCategory(value)}
                         options={[
-                          {value: 1, label: 'Coffee'},
-                          {value: 2, label: 'Resturant'}
+                          { value: 1, label: 'Coffee' },
+                          { value: 2, label: 'Resturant' }
                         ]}
                         placeholder='Select Category'
                       />
@@ -90,7 +90,7 @@ function Registration() {
                         name='singleSelect'
                         value={city}
                         onChange={value => setCity(value)}
-                        options={[{value: 1, label: 'Medina'}]}
+                        options={[{ value: 1, label: 'Medina' }]}
                         placeholder='Select City'
                       />
                     </Col>
@@ -107,9 +107,9 @@ function Registration() {
                             value: 1,
                             label: '1'
                           },
-                          {value: 2, label: '2'},
-                          {value: 3, label: '3'},
-                          {value: 4, label: '4'}
+                          { value: 2, label: '2' },
+                          { value: 3, label: '3' },
+                          { value: 4, label: '4' }
                         ]}
                         placeholder='Select Branches'
                       />
@@ -143,8 +143,8 @@ function Registration() {
                         value={position}
                         onChange={value => setPosition(value)}
                         options={[
-                          {value: 1, label: 'Publisher'},
-                          {value: 2, label: 'Not a Publisher'}
+                          { value: 1, label: 'Publisher' },
+                          { value: 2, label: 'Not a Publisher' }
                         ]}
                         placeholder='Select Position'
                       />

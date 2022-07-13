@@ -42,6 +42,16 @@ import Widgets from 'views/Widgets.js'
 import Wizard from 'views/forms/Wizard.js'
 import Registration from './Containers/Registration'
 
+import WellcomeScreen from 'Containers/WellcomeScreen'
+import LoginScreen from 'Containers/LoginScreen'
+import RegisterScreen from 'Containers/RegisterScreen'
+import ForgotScreen from 'Containers/ForgotScreen'
+
+// import WellcomeScreen from 'views/pages/WellcomeScreen'
+// import RegisterScreen from 'views/pages/RegisterScreen'
+// import LoginScreen from 'views/pages/LoginScreen'
+// import ForgotScreen from 'views/pages/ForgotPassword'
+
 const routes = [
   {
     path: '/dashboard',
@@ -71,19 +81,41 @@ const routes = [
         layout: '/admin'
       },
       {
+        path: '/wellcome',
+        name: 'Welcome',
+        mini: 'L',
+        component: WellcomeScreen,
+        layout: '/auth'
+      },
+      {
         path: '/login',
         name: 'Login',
         mini: 'L',
-        component: Login,
+        component: LoginScreen,
         layout: '/auth'
       },
+      // {
+      //   path: '/login',
+      //   name: 'Login',
+      //   mini: 'L',
+      //   component: Login,
+      //   layout: '/auth'
+      // },
+
       {
         path: '/register',
         name: 'Register',
         mini: 'R',
-        component: Register,
+        component: RegisterScreen,
         layout: '/auth'
       },
+      // {
+      //   path: '/register',
+      //   name: 'Register',
+      //   mini: 'R',
+      //   component: Register,
+      //   layout: '/auth'
+      // },
       {
         path: '/lock-screen',
         name: 'LockScreen',
@@ -91,6 +123,14 @@ const routes = [
         component: LockScreen,
         layout: '/auth'
       },
+      {
+        path: '/forgot',
+        name: 'ForgotScreen',
+        mini: 'LS',
+        component: ForgotScreen,
+        layout: '/auth'
+      },
+
       {
         path: '/user-profile',
         name: 'UserProfile',
