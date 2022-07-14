@@ -1,5 +1,9 @@
-import {persistReducer} from 'redux-persist'
+import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import {connectRouter} from 'connected-react-router'
+import { connectRouter } from 'connected-react-router'
 
-export const combinedReducers = history => ({})
+import LoginScreen from 'Containers/LoginScreen/redux/reducer'
+
+export const combinedReducers = history => ({
+    LoginScreen
+})

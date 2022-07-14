@@ -1,22 +1,4 @@
-/*!
-
-=========================================================
-* Paper Dashboard PRO React - v1.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-pro-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
-
-
 // reactstrap components
 import {
   Button,
@@ -36,6 +18,11 @@ import {
   Row,
 } from "reactstrap";
 
+import { Link } from "react-router-dom"
+
+
+import Images from "utils/Images";
+
 
 const WellcomeScreen = () => {
   return (
@@ -52,9 +39,9 @@ const WellcomeScreen = () => {
       <div className="login-page">
         <Container>
           <Row>
-            <Col className="ml-auto mr-auto" lg="4" md="6">
-              <Form action="" className="form" method="">
-                <Card className="card-login" style={{}}>
+            <Col className="ml-auto mr-auto" lg="6" md="8">
+              <Form action="" className="form m-0" method="">
+                <Card className="card-login" style={{ marginTop: "8rem", padding: '50px', }}>
                   <CardHeader>
                     <CardHeader>
                       <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -80,26 +67,38 @@ const WellcomeScreen = () => {
                     </FormGroup>
                   </CardBody>
                   <CardFooter>
+                    <div style={{ flexDirection: 'row', display: 'flex', justifyContent: 'space-between' }}>
+                      <Link to="/auth/register">
+                        <div >
+                          <p style={{ backgroundColor: '#3A0F7D', padding: '15px 65px 15px 65px', borderRadius: '50px', color: 'white' }}>Sign Up</p>
+                        </div>
+                      </Link>
+                      <Link to="/auth/login">
+                        <div >
+                          <p style={{ border: '1px #3A0F7D solid', padding: '15px 65px 15px 65px', borderRadius: '50px', color: '#3A0F7D' }}>Sign In</p>
+                        </div>
+                      </Link>
+                    </div>
 
-                    <Button
-                      className="btn-round"
-                      style={{ backgroundColor: '#3A0F7D', width: '40%', marginRight: 20, TextDecoration: 'none' }}
-                      onClick={(e) => e.preventDefault()}
-                    >
-                      Sign Up
-                    </Button>
-                    <a>
-                      <Button
-                        className="btn-round"
-                        color='primary'
-                        outline
-                        style={{ color: '#3A0F7D', borderColor: '#3A0F7D', width: '40%' }}
+                    {/* <Button
+                        className=""
+                        style={{ backgroundColor: '#3A0F7D', width: '40%', marginLeft: '20px', marginRight: '50px', TextDecoration: 'none' }}
                         onClick={(e) => e.preventDefault()}
-                        href="/login"
+                      >
+                        Sign Up
+                      </Button>
+
+                    <Link to="/auth/register">
+                      <Button
+                        className=""
+                        outline
+                        style={{ color: '#3A0F7D', borderColor: '#3A0F7D', width: '40%', }}
+                        onClick={(e) => e.preventDefault()}
+                        href="/auth/login"
                       >
                         Log In
                       </Button>
-                    </a>
+                    </Link> */}
                   </CardFooter>
                 </Card>
               </Form>
@@ -109,12 +108,17 @@ const WellcomeScreen = () => {
         <div
           className="full-page-background"
           style={{
-            backgroundImage: `url(${require("assets/img/bg/bg_img.png")})`,
+            backgroundImage: `url(${require("assets/img/bg/bg_img1.png")})`,
 
           }}
-        />
+        >
+          <div style={{ position: 'relative' }}>
+            <img src={Images.vector_1} style={{ position: 'absolute', right: 19, top: 19, height: '80px', width: '80px' }} />
+          </div>
+          <img src={Images.vector_2} style={{ position: 'absolute', bottom: 19, left: 19, height: '80px', width: '80px' }} />
+        </div>
       </div>
-    </div>
+    </div >
   )
 }
 

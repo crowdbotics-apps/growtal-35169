@@ -19,61 +19,126 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import Images from "utils/Images";
+
+// import { loginSuccess } from "./redux/actions";
+import { connect } from "react-redux"
+import { Link } from "react-router-dom"
+import useForm from "../../utils/useForm"
+import validator from "../../utils/validation"
+
+import { Toaster } from "react-hot-toast"
 
 
-const ForgotScreen = () => {
+const ForgotScreen = (props) => {
+
+  const { history } = props
+
+  const stateSchema = {
+    email: {
+      value: "",
+      error: ""
+    },
+  }
+
+  const validationStateSchema = {
+    email: {
+      required: true,
+      validator: validator.email
+    },
+  }
+
+  const { state, handleOnChange, disable } = useForm(
+    stateSchema,
+    validationStateSchema
+  )
+
+  const handlelogin = () => {
+    const data = {
+      email: state.email.value,
+      password: state.password.value,
+    }
+    // loginSuccess(data)
+    console.log('data....', data);
+  }
+
+
   return (
-    <div
-      className="register-page">
-      <Container>
-        <Row>
-          <Col className="ml-auto" lg="5" md="5">
-            <img src={require("assets/img/left_images.png")} />
-          </Col>
+    <>
+      <div className="register-page">
+        <Container>
+          <Row style={{ justifyContent: 'space-between', marginTop: '2rem' }}>
+            <Col className="mr-auto ml-atuo" lg="6" md="6">
+              <img src={require("assets/img/left_images.png")} />
+            </Col>
 
-          <Col className="mr-auto" lg="4" md="6">
-            <h5 style={{ display: 'flex', justifyContent: 'center', color: 'white', fontFamily: 'Libre Caslon Text', fontWeight: '  ' }}>Forgot Password</h5>
-            <Card className="card-signup text-center">
-              <CardBody>
-                <Form action="" className="form" method="">
-                  <label style={{ display: 'flex' }}>Email</label>
-                  <InputGroup>
+            <Col className="m-0" lg="6" md="6" >
+              <h5 style={{ display: 'flex', justifyContent: 'center', color: 'white', fontFamily: 'Libre Caslon Text' }}>Forgot Password</h5>
+              <Card className="card-signup text-center" style={{ padding: '30px' }}>
+                <CardBody style={{ paddingTop: '30px' }}>
+                  <Form action="m-0" className="form" method="">
+                    <label style={{ display: 'flex' }}>Eamil</label>
+                    <InputGroup>
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          {/* <i className="nc-icon nc-email-85" /> */}
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input placeholder="Type email" type="email" onChange={e => handleOnChange("email", e.target.value)} />
+                    </InputGroup>
+                    {state.email.error && (
+                      <label style={{ color: "red", display: 'flex' }}>
+                        {state.email.error}
+                      </label>
+                    )}
 
-                    <InputGroupAddon addonType="prepend">
-                      <InputGroupText>
-                        {/* <i className="nc-icon nc-single-02" /> */}
-                      </InputGroupText>
-                    </InputGroupAddon>
-                    <Input placeholder="Type email" type="text" />
-                  </InputGroup>
+                    <FormGroup
+                      check
+                    // className="text-left"
+                    >
+                    </FormGroup>
+                  </Form>
+                </CardBody>
+                <CardFooter>
+                  <Button
+                    style={{ backgroundColor: '#3A0F7D', width: '50%', }}
+                    className="btn-round"
+                    color=""
+                    href="#pablo"
+                    onClick={(e) => { e.preventDefault(); handlelogin() }}
+                  >
+                    Submit
+                  </Button>
+                </CardFooter>
 
-
-                </Form>
-              </CardBody>
-              <CardFooter>
-                <Button
-                  style={{ backgroundColor: '#3A0F7D', width: '50%' }}
-                  className="btn-round"
-                  color=""
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  Submit
-                </Button>
-              </CardFooter>
-            </Card>
-            <p style={{ color: 'white' }}> <img src={require("assets/img/back_vector.png")} style={{ marginRight: '10px' }} /> Cancel, Forgot Password</p>
-          </Col>
-        </Row>
-      </Container>
-      <div
-        className="full-page-background"
-        style={{
-          backgroundImage: `url(${require("assets/img/bg/auth_bg.png")})`,
-        }}
-      />
-    </div >
+              </Card>
+              <Link to="/auth/login">
+                <p style={{ color: 'white' }}> <img src={require("assets/img/back_vector.png")} style={{ marginRight: '10px' }} />Cancel, Forgot Password</p>
+              </Link>
+            </Col>
+          </Row>
+        </Container>
+        <div
+          className="full-page-background"
+          style={{
+            backgroundImage: `url(${require("assets/img/bg/auth_bg.png")})`,
+          }}
+        >
+          <img src={Images.logo_name} style={{ bottom: 30, position: 'absolute', right: 30 }} />
+        </div>
+      </div >
+    </>
   )
 }
 
-export default ForgotScreen
+const mapStateToProps = state => ({
+  // userData: state.LoginScreen.user,
+  // requesting: state.login.requesting,
+  // error: state.login.error
+})
+
+const mapDispatchToProps = dispatch => ({
+  // loginSuccess: data => dispatch(loginSuccess(data)),
+  // resetMsg: () => dispatch(resetMsg())
+})
+export default connect(mapStateToProps, mapDispatchToProps)(ForgotScreen)
