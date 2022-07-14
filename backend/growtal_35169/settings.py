@@ -80,9 +80,12 @@ THIRD_PARTY_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.apple',
     'django_extensions',
     'drf_yasg',
     'storages',
+    'dj_rest_auth',
 ]
 MODULES_APPS = get_modules()
 
@@ -133,7 +136,12 @@ if env.str("DATABASE_URL", default=None):
     DATABASES = {
         'default': env.db()
     }
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+    ),
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -239,6 +247,10 @@ if USE_S3:
     MEDIA_URL = '/mediafiles/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
+else:
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    MEDIA_URL = '/media/'
+
 # Swagger settings for api docs
 SWAGGER_SETTINGS = {
     "DEFAULT_INFO": f"{ROOT_URLCONF}.api_info",
@@ -257,3 +269,54 @@ if GS_BUCKET_NAME:
     DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
     STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
     GS_DEFAULT_ACL = "publicRead"
+
+
+# >>>  Social Authentication Settings
+SOCIALACCOUNT_QUERY_EMAIL = True
+SOCIALACCOUNT_ENABLED = True
+LOGIN_REDIRECT_URL = "/"
+ACCOUNT_EMAIL_REQUIRED=True
+ACCOUNT_USERNAME_REQURIED=True
+ACCOUNT_ALLOW_REGISTRATION = env.bool("ACCOUNT_ALLOW_REGISTRATION", True)
+SOCIALACCOUNT_ALLOW_REGISTRATION = env.bool("SOCIALACCOUNT_ALLOW_REGISTRATION", True)
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    },
+    'facebook': {
+        'METHOD': 'oauth2',
+        'SDK_URL': '//connect.facebook.net/{locale}/sdk.js',
+        'SCOPE': ['email', 'public_profile'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'INIT_PARAMS': {'cookie': True},
+        'FIELDS': [
+            'id',
+            'first_name',
+            'last_name',
+            'middle_name',
+            'name',
+            'name_format',
+            'picture',
+            'short_name',
+            'email',
+        ],
+        'EXCHANGE_TOKEN': True,
+        'LOCALE_FUNC': 'path.to.callable',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v7.0',
+    },
+    "apple": {
+        "APP": {
+            "client_id": env.str("APPLE_CLIENT_ID", ""),
+            "secret": env.str("APPLE_KEY_ID", ""),
+            "key": env.str("APPLE_KEY", ""),
+            "certificate_key": env.str("APPLE_CERTIFICATE_KEY", "")
+        }
+    }
+}
