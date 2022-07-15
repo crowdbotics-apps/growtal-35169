@@ -5,9 +5,9 @@ import {
     LOGIN_VIA_FACEBOOK_REQUEST,
     LOGIN_VIA_FACEBOOK_SUCCESS,
     LOGIN_VIA_FACEBOOK_FALUIRE,
-    LOGIN_VIA_GOOGLE_REQUEST,
-    LOGIN_VIA_GOOGLE_SUCCESS,
-    LOGIN_VIA_GOOGLE_FALUIRE,
+    // LOGIN_VIA_GOOGLE_REQUEST,
+    // LOGIN_VIA_GOOGLE_SUCCESS,
+    // LOGIN_VIA_GOOGLE_FALUIRE,
 } from './types';
 
 export const loginRequest = (data) => ({
@@ -40,17 +40,17 @@ export const loginViaFacebookFaluire = (data) => ({
     data,
 });
 
-export const loginViaGoogleRequest = (data) => ({
-    type: LOGIN_VIA_GOOGLE_REQUEST,
-    data,
-});
+// export const loginViaGoogleRequest = (data) => ({
+//     type: LOGIN_VIA_GOOGLE_REQUEST,
+//     data,
+// });
 
-export const loginViaGoogleSuccess = (data) => ({
-    type: LOGIN_VIA_GOOGLE_SUCCESS,
-    data,
-});
+// export const loginViaGoogleSuccess = (data) => ({
+//     type: LOGIN_VIA_GOOGLE_SUCCESS,
+//     data,
+// });
 
-export const loginViaGoogleFaluire = (data) => ({
-    type: LOGIN_VIA_GOOGLE_FALUIRE,
-    data,
-});
+// export const loginViaGoogleFaluire = (data) => ({
+//     type: LOGIN_VIA_GOOGLE_FALUIRE,
+//     data,
+// });

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // reactstrap components
 import {
@@ -21,18 +21,34 @@ import {
 } from "reactstrap";
 import Images from "utils/Images";
 
-import { loginSuccess } from "./redux/actions";
+import { loginRequest, loginViaFacebookRequest } from "./redux/actions";
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 import useForm from "../../utils/useForm"
 import validator from "../../utils/validation"
 
-import { Toaster } from "react-hot-toast"
+import "./style.css"
+
+
+import toast, { Toaster } from 'react-hot-toast';
+
+import { OS, currentBrowser } from "utils/platform";
+
+// import FacebookLogin from 'react-facebook-login';
+
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+
 
 
 const LoginScreen = (props) => {
 
-  const { history, loginSuccess, userData } = props
+  const { history, loginRequest, userData, loginViaFacebookRequest } = props
+
+  const [isAppleBtn, setAppleBtn] = useState(false)
+
+  const [login, setLogin] = useState(false);
+  const [FbData, setFbData] = useState(false);
+  const [picture, setPicture] = useState('');
 
   const stateSchema = {
     email: {
@@ -44,7 +60,6 @@ const LoginScreen = (props) => {
       error: ""
     }
   }
-
   const validationStateSchema = {
     email: {
       required: true,
@@ -62,19 +77,51 @@ const LoginScreen = (props) => {
   )
 
   const handlelogin = () => {
-    const data = {
-      email: state.email.value,
-      password: state.password.value,
+    if (state.email.value && state.password.value) {
+      const data = {
+        username: state.email.value,
+        password: state.password.value,
+      }
+      loginRequest(data)
+    } else {
+      toast.error('Both Fields are required');
     }
-    loginSuccess(data)
-    console.log('data....', data);
   }
 
-  console.log('userData........', userData);
+  useEffect(() => {
+    OS(window) == 'MacOS' && setAppleBtn(true)
+    console.log(OS(window));
+    console.log(currentBrowser(window));
+  }, [])
 
-  console.log('email...', state.email.value);
+  const responseFacebook = (response) => {
+    console.log("response", response);
+    setFbData(response);
+    // setPicture(response.picture.data.url);
+    // if (response.accessToken) {
+    //   console.log('accessToken...', response.accessToken);
+    //   setLogin(true);
+    //   loginViaFacebookRequest({ access_token: response.accessToken })
+    // } else {
+    //   setLogin(false);
+    // }
+  }
+
+  useEffect(() => {
+    if (FbData?.accessToken) {
+      console.log('FbData...', FbData.accessToken);
+      // setLogin(true);
+      loginViaFacebookRequest({ access_token: FbData.accessToken })
+    } else {
+      // setLogin(false);
+    }
+  }, [FbData])
+
+  console.log('login.........', FbData);
+
   return (
     <>
+      <Toaster position="top-center" />
       <div className="register-page">
         <Container>
           <Row style={{ justifyContent: 'space-between', marginTop: '1rem' }}>
@@ -91,7 +138,7 @@ const LoginScreen = (props) => {
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          {/* <i className="nc-icon nc-circle-10" /> */}
+                          <img src={Images.email_logo} />
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input placeholder="Type eamil" type="email" onChange={e => handleOnChange("email", e.target.value)} />
@@ -105,6 +152,7 @@ const LoginScreen = (props) => {
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
+                          <img src={Images.password_logo} />
                           {/* <i className="nc-icon nc-email-85" /> */}
                         </InputGroupText>
                       </InputGroupAddon>
@@ -157,10 +205,28 @@ const LoginScreen = (props) => {
                   <div style={{ borderBottom: '1px black solid', width: '30%' }} />
                 </div>
                 <div className="social" style={{ marginTop: '20px', marginBottom: '20px' }}>
-                  <img src={require("assets/img/facebook_img.png")} />
+                  <FacebookLogin
+                    appId="2124993807656772"
+                    autoLoad={false}
+                    callback={responseFacebook}
+                    render={renderProps => (
+                      <img onClick={renderProps.onClick} src={require("assets/img/facebook_img.png")} />
+                      // <button >This is my custom FB button</button>
+                    )}
+                  />
+                  {/* <img src={require("assets/img/facebook_img.png")} /> */}
                   <img style={{ marginLeft: '20px', marginRight: '20px' }} src={require("assets/img/google_img.png")} />
-                  <img src={require("assets/img/apple_img.png")} />
+                  {isAppleBtn &&
+                    <img src={require("assets/img/apple_img.png")} />
+                  }
                 </div>
+                {/* <FacebookLogin
+                  appId="2124993807656772"
+                  autoLoad={true}
+                  fields="name,email,picture"
+                  scope="public_profile,user_friends"
+                  callback={responseFacebook}
+                  icon="fa-facebook" /> */}
                 <div style={{ marginTop: '20px', marginBottom: '20px' }}>
                   <p>
                     Don’t have an account yet?{" "}
@@ -193,7 +259,15 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  loginSuccess: data => dispatch(loginSuccess(data)),
-  // resetMsg: () => dispatch(resetMsg())
+  loginRequest: data => dispatch(loginRequest(data)),
+  loginViaFacebookRequest: (data) => dispatch(loginViaFacebookRequest(data))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)
+
+
+const styles = {
+  tooggleStyle: {
+    backgroundColor: "transparent",
+    padding: 0
+  }
+}

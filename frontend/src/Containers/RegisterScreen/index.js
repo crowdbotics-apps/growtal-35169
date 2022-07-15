@@ -21,7 +21,7 @@ import {
 } from "reactstrap";
 import Images from "utils/Images";
 
-// import { loginSuccess } from "./redux/actions";
+import { registerRequest } from "./redux/actions";
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 import useForm from "../../utils/useForm"
@@ -32,7 +32,7 @@ import { Toaster } from "react-hot-toast"
 
 const RegisterScreen = (props) => {
 
-  const { history } = props
+  const { history, registerRequest } = props
 
   const stateSchema = {
     fullname: {
@@ -76,13 +76,15 @@ const RegisterScreen = (props) => {
     validationStateSchema
   )
 
-  const handlelogin = () => {
+  const handleSignUp = () => {
     const data = {
+      name: state.fullname.value,
       email: state.email.value,
       password: state.password.value,
+      user_type: "Expert"
     }
-    // loginSuccess(data)
-    console.log('data....', data);
+    console.log('data', data);
+    registerRequest(data)
   }
 
 
@@ -179,7 +181,7 @@ const RegisterScreen = (props) => {
                     className="btn-round"
                     color=""
                     href="#pablo"
-                    onClick={(e) => { e.preventDefault(); handlelogin() }}
+                    onClick={(e) => { e.preventDefault(); handleSignUp() }}
                   >
                     Sign Up
                   </Button>
@@ -212,7 +214,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  // loginSuccess: data => dispatch(loginSuccess(data)),
+  registerRequest: data => dispatch(registerRequest(data)),
   // resetMsg: () => dispatch(resetMsg())
 })
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterScreen)

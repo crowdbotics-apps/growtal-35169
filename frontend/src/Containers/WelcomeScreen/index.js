@@ -24,7 +24,7 @@ import { Link } from "react-router-dom"
 import Images from "utils/Images";
 
 
-const WellcomeScreen = () => {
+const WelcomeScreen = () => {
   return (
     <div
     // style={{ height: "100%", margin: 0 }}
@@ -122,4 +122,4 @@ const WellcomeScreen = () => {
   )
 }
 
-export default WellcomeScreen
+export default WelcomeScreen

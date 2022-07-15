@@ -2,15 +2,12 @@ import {
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
     LOGING_FALUIRE,
-    USER_LOGOUT,
-    SET_USER_TYPE,
     LOGIN_VIA_FACEBOOK_REQUEST,
     LOGIN_VIA_FACEBOOK_SUCCESS,
     LOGIN_VIA_FACEBOOK_FALUIRE,
-    LOGIN_VIA_GOOGLE_REQUEST,
-    LOGIN_VIA_GOOGLE_SUCCESS,
-    LOGIN_VIA_GOOGLE_FALUIRE,
-    SET_NOTIFICATION_ID
+    // LOGIN_VIA_GOOGLE_REQUEST,
+    // LOGIN_VIA_GOOGLE_SUCCESS,
+    // LOGIN_VIA_GOOGLE_FALUIRE,
 } from './types';
 
 const initialState = {
@@ -40,7 +37,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 requesting: false,
-                err: action.data
             };
 
         case LOGIN_VIA_FACEBOOK_REQUEST:
@@ -63,25 +59,25 @@ export default (state = initialState, action) => {
                 data: action.data
             };
 
-        case LOGIN_VIA_GOOGLE_REQUEST:
-            return {
-                ...state,
-                requesting: true,
-            };
+        // case LOGIN_VIA_GOOGLE_REQUEST:
+        //     return {
+        //         ...state,
+        //         requesting: true,
+        //     };
 
-        case LOGIN_VIA_GOOGLE_SUCCESS:
-            return {
-                ...state,
-                requesting: false,
-                data: action.data
-            };
+        // case LOGIN_VIA_GOOGLE_SUCCESS:
+        //     return {
+        //         ...state,
+        //         requesting: false,
+        //         data: action.data
+        //     };
 
-        case LOGIN_VIA_GOOGLE_FALUIRE:
-            return {
-                ...state,
-                requesting: false,
-                data: action.data
-            };
+        // case LOGIN_VIA_GOOGLE_FALUIRE:
+        //     return {
+        //         ...state,
+        //         requesting: false,
+        //         data: action.data
+        //     };
 
         default:
             return state;

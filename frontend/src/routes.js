@@ -42,15 +42,11 @@ import Widgets from 'views/Widgets.js'
 import Wizard from 'views/forms/Wizard.js'
 import Registration from './Containers/Registration'
 
-import WellcomeScreen from 'Containers/WellcomeScreen'
+import WelcomeScreen from 'Containers/WelcomeScreen'
 import LoginScreen from 'Containers/LoginScreen'
 import RegisterScreen from 'Containers/RegisterScreen'
 import ForgotScreen from 'Containers/ForgotScreen'
 
-// import WellcomeScreen from 'views/pages/WellcomeScreen'
-// import RegisterScreen from 'views/pages/RegisterScreen'
-// import LoginScreen from 'views/pages/LoginScreen'
-// import ForgotScreen from 'views/pages/ForgotPassword'
 
 const routes = [
   {
@@ -81,10 +77,10 @@ const routes = [
         layout: '/admin'
       },
       {
-        path: '/wellcome',
+        path: '/welcome',
         name: 'Welcome',
         mini: 'L',
-        component: WellcomeScreen,
+        component: WelcomeScreen,
         layout: '/auth'
       },
       {

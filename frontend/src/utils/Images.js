@@ -4,5 +4,7 @@ export default {
     simple_bg: require("assets/img/bg/simple_bg.png"),
     left_img: require("assets/img/bg/left_img.png"),
     logo_name: require("assets/img/bg/logo_name.png"),
+    email_logo: require("assets/img/email_logo.png"),
+    password_logo: require("assets/img/password_logo.png"),
 
 }
