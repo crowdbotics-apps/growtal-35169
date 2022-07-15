@@ -11,7 +11,13 @@ from rest_framework import serializers
 from rest_auth.serializers import PasswordResetSerializer
 from dj_rest_auth.registration.serializers import SocialLoginSerializer
 from allauth.socialaccount.helpers import complete_social_login
+
+from home.models import Feedback
 from users.models import Profile
+# social auth custom imports
+from django.utils.translation import gettext_lazy as _
+from requests.exceptions import HTTPError
+#
 
 User = get_user_model()
 
@@ -81,7 +87,7 @@ class SignupSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'email', 'name', 'user_type', 'profile_picture', 'linkedin_profile_url']
+        fields = ['id', 'email', 'name', 'user_type', 'profile_picture', 'linkedin_profile_url', 'approve']
 
 
 class UpdateUserSerializer(serializers.ModelSerializer):
@@ -203,3 +209,115 @@ class RestSocialLoginSerializer(SocialLoginSerializer):
         attrs['user'] = login.account.user
 
         return attrs
+
+
+class CustomSocialLoginSerializer(SocialLoginSerializer):
+    def validate(self, attrs):
+        view = self.context.get('view')
+        request = self._get_request()
+
+        if not view:
+            raise serializers.ValidationError(
+                _('View is not defined, pass it as a context variable'),
+            )
+
+        adapter_class = getattr(view, 'adapter_class', None)
+        if not adapter_class:
+            raise serializers.ValidationError(_('Define adapter_class in view'))
+
+        adapter = adapter_class(request)
+        app = adapter.get_provider().get_app(request)
+
+        # More info on code vs access_token
+        # http://stackoverflow.com/questions/8666316/facebook-oauth-2-0-code-and-token
+
+        access_token = attrs.get('access_token')
+        code = attrs.get('code')
+        # Case 1: We received the access_token
+        if access_token:
+            tokens_to_parse = {'access_token': access_token}
+            token = access_token
+            # For sign in with apple
+            id_token = attrs.get('id_token')
+            if id_token:
+                tokens_to_parse['id_token'] = id_token
+
+        # Case 2: We received the authorization code
+        elif code:
+            self.set_callback_url(view=view, adapter_class=adapter_class)
+            self.client_class = getattr(view, 'client_class', None)
+
+            if not self.client_class:
+                raise serializers.ValidationError(
+                    _('Define client_class in view'),
+                )
+
+            provider = adapter.get_provider()
+            scope = provider.get_scope(request)
+            client = self.client_class(
+                request,
+                app.client_id,
+                app.secret,
+                adapter.access_token_method,
+                adapter.access_token_url,
+                self.callback_url,
+                scope,
+                scope_delimiter=adapter.scope_delimiter,
+                headers=adapter.headers,
+                basic_auth=adapter.basic_auth,
+            )
+            token = client.get_access_token(code)
+            access_token = token['access_token']
+            tokens_to_parse = {'access_token': access_token}
+
+            # If available we add additional data to the dictionary
+            for key in ['refresh_token', 'id_token', adapter.expires_in_key]:
+                if key in token:
+                    tokens_to_parse[key] = token[key]
+        else:
+            raise serializers.ValidationError(
+                _('Incorrect input. access_token or code is required.'),
+            )
+
+        social_token = adapter.parse_token(tokens_to_parse)
+        social_token.app = app
+
+        try:
+            login = self.get_social_login(adapter, app, social_token, token)
+            user_email = login.user.email
+            if not User.objects.filter(email=user_email):
+                raise serializers.ValidationError(
+                    _('No Account is Registered with Email associated with your Social Account')
+                )
+            complete_social_login(request, login)
+        except HTTPError:
+            raise serializers.ValidationError(_('Incorrect value'))
+
+        if not login.is_existing:
+            # We have an account already signed up in a different flow
+            # with the same email address: raise an exception.
+            # This needs to be handled in the frontend. We can not just
+            # link up the accounts due to security constraints
+            if allauth_settings.UNIQUE_EMAIL:
+                # Do we have an account already with this email address?
+                account_exists = get_user_model().objects.filter(
+                    email=login.user.email,
+                ).exists()
+                if account_exists:
+                    raise serializers.ValidationError(
+                        _('User is already registered with this e-mail address.'),
+                    )
+
+            login.lookup()
+            login.save(request, connect=True)
+
+        attrs['user'] = login.account.user
+
+        return attrs
+
+
+class FeedbackSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Feedback
+        fields = '__all__'

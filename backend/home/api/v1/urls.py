@@ -9,6 +9,9 @@ from home.api.v1.viewsets import (
     GoogleLogin,
     FacebookLogin,
     AppleLogin,
+    PrivacyPolicyViewset,
+    TermsAndConditionsViewset,
+    FeedbackViewset,
 )
 
 router = DefaultRouter()
@@ -16,6 +19,9 @@ router.register("signup", SignupViewSet, basename="signup")
 router.register("login", LoginViewSet, basename="login")
 router.register("updater_user", UpdateUserViewset, basename="updater_user")
 router.register("user_profile", UserProfileViewset, basename="user_profile")
+router.register("terms_and_conditions", TermsAndConditionsViewset, basename="terms_and_conditions")
+router.register("privacy_policy", PrivacyPolicyViewset, basename="privacy_policy")
+router.register("user_feedback", FeedbackViewset, basename="user_feedback")
 
 
 urlpatterns = [

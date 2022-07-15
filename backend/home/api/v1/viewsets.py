@@ -13,13 +13,20 @@ from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 from allauth.socialaccount.providers.apple.views import AppleOAuth2Adapter
 from dj_rest_auth.registration.views import SocialLoginView
 from allauth.socialaccount.models import SocialAccount
+
+from home.models import Feedback
 from users.models import Profile
+from modules.privacy_policy.models import PrivacyPolicy
+from modules.terms_and_conditions.models import TermAndCondition
 
 from home.api.v1.serializers import (
     SignupSerializer,
     UserSerializer,
     UpdateUserSerializer,
-    RestSocialLoginSerializer, UserProfileSerializer,
+    RestSocialLoginSerializer,
+    UserProfileSerializer,
+    CustomSocialLoginSerializer,
+    FeedbackSerializer,
 )
 from users.models import User
 
@@ -51,7 +58,7 @@ class LoginViewSet(ViewSet):
         user = serializer.validated_data["user"]
         if not user.approve:
             return Response(
-                {'approval_error': 'Kindly Wait for Account Approval. This usually takes some moments'},
+                {'non_field_errors': 'Kindly Wait for Account Approval. This usually takes some moments'},
                 status=status.HTTP_400_BAD_REQUEST
             )
         token, created = Token.objects.get_or_create(user=user)
@@ -62,6 +69,7 @@ class LoginViewSet(ViewSet):
 
 class GoogleLogin(SocialLoginView):
     adapter_class = GoogleOAuth2Adapter
+    serializer_class = CustomSocialLoginSerializer
     client_class = OAuth2Client
     permission_classes = [AllowAny, ]
     callback_url = "https://developers.google.com/oauthplayground"
@@ -77,15 +85,22 @@ class GoogleLogin(SocialLoginView):
         user_detail = UserSerializer(user, many=False, context={"request": self.request})
         serializer = serializer_class(instance=self.token, context={'request': self.request})
         resp = serializer.data
+        if not user_detail.data.get('approve'):
+            return Response(
+                {'non_field_errors': 'Kindly Wait for Account Approval. This usually takes some moments'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
         resp["token"] = resp["key"]
         resp.pop("key")
         resp["user"] = user_detail.data
+        resp['profile'] = Profile.objects.filter(user_id=user_detail.data.get('id')).first()
         response = Response(resp, status=status.HTTP_200_OK)
         return response
 
 
 class FacebookLogin(SocialLoginView):
     adapter_class = FacebookOAuth2Adapter
+    serializer_class = CustomSocialLoginSerializer
     permission_classes = [AllowAny, ]
 
     def get_response(self):
@@ -99,9 +114,15 @@ class FacebookLogin(SocialLoginView):
         user_detail = UserSerializer(user, many=False)
         serializer = serializer_class(instance=self.token, context={'request': self.request})
         resp = serializer.data
+        if not user_detail.data.get('approve'):
+            return Response(
+                {'non_field_errors': 'No Account is Registered with Email associated with your Social Account'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
         resp["token"] = resp["key"]
         resp.pop("key")
         resp["user"] = user_detail.data
+        resp['profile'] = Profile.objects.filter(user_id=user_detail.data.get('id')).first()
         response = Response(resp, status=status.HTTP_200_OK)
         return response
 
@@ -118,8 +139,14 @@ class AppleLogin(SocialLoginView):
         user_detail = UserSerializer(user, many=False)
         serializer = serializer_class(instance=self.token, context={'request': self.request})
         resp = serializer.data
+        if not user_detail.data.get('approve'):
+            return Response(
+                {'non_field_errors': 'No Account is Registered with Email associated with your Social Account'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
         resp["user"] = user_detail.data
         resp["token"] = resp["key"]
+        resp['profile'] = Profile.objects.filter(user_id=user_detail.data.get('id')).first()
         response = Response(resp, status=status.HTTP_200_OK)
         return response
 
@@ -142,3 +169,25 @@ class UserProfileViewset(ModelViewSet):
     def get_queryset(self):
         queryset = Profile.objects.filter(user_id=self.request.user.id)
         return queryset
+
+
+class PrivacyPolicyViewset(ViewSet):
+    permission_classes = [AllowAny, ]
+
+    def list(self, request, *args, **kwargs):
+        privacy_policy = PrivacyPolicy.objects.filter(is_active=True).first().body
+        return Response({"privacy_policy": privacy_policy})
+
+
+class TermsAndConditionsViewset(ViewSet):
+    permission_classes = [AllowAny, ]
+
+    def list(self, request, *args, **kwargs):
+        terms_and_condition = TermAndCondition.objects.filter(is_active=True).first().body
+        return Response({"terms_and_condition": terms_and_condition})
+
+
+class FeedbackViewset(ModelViewSet):
+    serializer_class = FeedbackSerializer
+    http_method_names = ['post']
+    permission_classes = [IsAuthenticated]
