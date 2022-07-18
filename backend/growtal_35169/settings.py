@@ -87,6 +87,7 @@ THIRD_PARTY_APPS = [
     'storages',
     'dj_rest_auth',
     "corsheaders",
+    'django_rest_passwordreset',
 ]
 MODULES_APPS = get_modules()
 
@@ -346,3 +347,6 @@ CORS_ALLOW_HEADERS = [
     'x-requested-with',
 ]
 CORS_ALLOW_CREDENTIALS = True
+
+# >>> Change Password settings
+OLD_PASSWORD_FIELD_ENABLED = True

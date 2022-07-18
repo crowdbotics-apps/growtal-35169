@@ -1,6 +1,7 @@
 from django.urls import path, include, re_path
 from rest_framework.routers import DefaultRouter
-
+from rest_auth.views import PasswordChangeView
+from django_rest_passwordreset.views import reset_password_confirm
 from home.api.v1.viewsets import (
     SignupViewSet,
     LoginViewSet,
@@ -26,8 +27,9 @@ router.register("user_feedback", FeedbackViewset, basename="user_feedback")
 
 urlpatterns = [
     path("", include(router.urls)),
-    # path("password/change/", PasswordChangeView.as_view(), name='rest_password_change'),
-    # path("password/reset/", include('django_rest_passwordreset.urls', namespace='password_reset')),
+    path("password/change/", PasswordChangeView.as_view(), name='rest_password_change'),
+    path("password/reset/", include('django_rest_passwordreset.urls', namespace='password_reset')),
+    path("password/reset/confirm/<token>/", reset_password_confirm, name='password_reset_confirm'),
     re_path(r'^login/google/$', GoogleLogin.as_view(), name='google_login'),
     re_path(r'^login/facebook/$', FacebookLogin.as_view(), name='facebook_login'),
     re_path(r'^login/apple/$', AppleLogin.as_view(), name='apple_login'),

@@ -63,7 +63,9 @@ class LoginViewSet(ViewSet):
             )
         token, created = Token.objects.get_or_create(user=user)
         user_serializer = UserSerializer(user)
-        user_profile = Profile.objects.filter(user_id=user.id).first()
+        user_profile = (Profile.objects.filter(user_id=user.id).values())
+        if user_profile:
+            user_profile = user_profile[0]
         return Response({"token": token.key, "user": user_serializer.data, "profile": user_profile})
 
 
