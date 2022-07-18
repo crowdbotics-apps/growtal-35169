@@ -1,4 +1,6 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { push } from "connected-react-router";
+import toast from 'react-hot-toast';
 // import AsyncStorage from '@react-native-community/async-storage';
 
 // import { showMessage } from 'react-native-flash-message';
@@ -42,6 +44,12 @@ function* signUp({ data }) {
     try {
         const response = yield call(signUpAPI, data);
         console.log('signUp success........', response);
+        toast.success(`Register Successfully`);
+        yield put(
+            push({
+                pathname: '/auth/login'
+            })
+        )
         // sessionStorage.setItem('authToken', response?.data?.token);
         // sessionStorage.setItem('user', response?.data?.user.id.toString());
         // yield put(loginSuccess(response?.data?.user));

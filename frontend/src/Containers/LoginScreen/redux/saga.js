@@ -1,4 +1,5 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { push } from "connected-react-router";
 // import AsyncStorage from '@react-native-community/async-storage';
 
 // import { showMessage } from 'react-native-flash-message';
@@ -51,6 +52,11 @@ function* login({ data }) {
         sessionStorage.setItem('authToken', response?.data?.token);
         sessionStorage.setItem('user', response?.data?.user?.id.toString());
         yield put(loginSuccess(response?.data?.user));
+        yield put(
+            push({
+                pathname: '/admin/dashboard'
+            })
+        )
     } catch (e) {
         const { response } = e
         console.log('login failure....', response);

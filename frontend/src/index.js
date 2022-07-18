@@ -38,10 +38,22 @@ ReactDOM.render(
     <Provider store={store}>
       <Router history={history}>
         <Switch>
-          <Route path='/auth' render={props => <AuthLayout {...props} />} />
-          <Route path='/admin' render={props => <AdminLayout {...props} />} />
-          <Redirect to='/admin/dashboard' />
+          <RouteGuard
+            path="/auth"
+            component={props => <AuthLayout {...props} />}
+          />
+          <RouteGuard
+            path="/admin"
+            component={props => <AdminLayout {...props} />}
+            isProtected
+          />
+          <Redirect to="/admin/dashboard" />
         </Switch>
+        {/* <Switch>
+          <Roou path='/auth' render={props => <AuthLayout {...props} />} />
+          <Route path='/admin' render={props => <AdminLayout {...props} />} />
+          <Redirect to='/auth/welcome' />
+        </Switch> */}
       </Router>
     </Provider>
   </React.StrictMode>,

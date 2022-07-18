@@ -39,12 +39,12 @@ const WelcomeScreen = () => {
       <div className="login-page">
         <Container>
           <Row>
-            <Col className="ml-auto mr-auto" lg="6" md="8">
-              <Form action="" className="form m-0" method="">
-                <Card className="card-login" style={{ marginTop: "8rem", padding: '50px', }}>
+            <Col className="ml-auto mr-auto" lg="6" md="8" sm="">
+              <Form action="" className="form" method="">
+                <Card className="card-login" style={{ marginTop: "8rem", }}>
                   <CardHeader>
                     <CardHeader>
-                      <div style={{ display: 'flex', justifyContent: 'center' }}>
+                      <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '30px' }}>
                         <img style={{ alignSelf: 'center' }} src={require("assets/img/app_logo.png")} alt="Logo" />
                       </div>
                     </CardHeader>
@@ -67,30 +67,46 @@ const WelcomeScreen = () => {
                     </FormGroup>
                   </CardBody>
                   <CardFooter>
-                    <div style={{ flexDirection: 'row', display: 'flex', justifyContent: 'space-between' }}>
+                    <div style={{ flexDirection: 'row', display: 'flex', justifyContent: 'space-evenly', paddingBottom: '30px', marginLeft: 10, marginRight: 10 }}>
                       <Link to="/auth/register">
-                        <div >
-                          <p style={{ backgroundColor: '#3A0F7D', padding: '15px 65px 15px 65px', borderRadius: '50px', color: 'white' }}>Sign Up</p>
+                        <div
+                        // style={{width:'209px', height: '54px'}}
+                        >
+                          <p style={{
+                            backgroundColor: '#3A0F7D',
+                            padding: '15px 65px 15px 65px',
+                            borderRadius: '50px',
+                            color: 'white',
+                            fontWeight: '700',
+                            fontSize: '16px'
+                          }}>Sign Up</p>
                         </div>
                       </Link>
                       <Link to="/auth/login">
                         <div >
-                          <p style={{ border: '1px #3A0F7D solid', padding: '15px 65px 15px 65px', borderRadius: '50px', color: '#3A0F7D' }}>Sign In</p>
+                          <p style={{
+                            border: '2px #3A0F7D solid',
+                            padding: '15px 65px 15px 65px',
+                            borderRadius: '50px',
+                            color: '#3A0F7D',
+                            fontWeight: '700',
+                            fontSize: '16px'
+                          }}>Log In</p>
                         </div>
                       </Link>
                     </div>
-
-                    {/* <Button
-                        className=""
+                    {/* <Link to="/auth/register">
+                      <Button
+                        className="btn-round"
                         style={{ backgroundColor: '#3A0F7D', width: '40%', marginLeft: '20px', marginRight: '50px', TextDecoration: 'none' }}
                         onClick={(e) => e.preventDefault()}
                       >
                         Sign Up
                       </Button>
-
+                    </Link>
                     <Link to="/auth/register">
                       <Button
-                        className=""
+                        className="btn-round"
                         outline
                         style={{ color: '#3A0F7D', borderColor: '#3A0F7D', width: '40%', }}
                         onClick={(e) => e.preventDefault()}
