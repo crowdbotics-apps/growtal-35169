@@ -15,8 +15,8 @@
 
 */
 import React from 'react'
-import {NavLink} from 'react-router-dom'
-import {Nav, Collapse} from 'reactstrap'
+import { NavLink } from 'react-router-dom'
+import { Nav, Collapse } from 'reactstrap'
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from 'perfect-scrollbar'
 
@@ -152,8 +152,11 @@ class Sidebar extends React.Component {
         data-color={this.props.bgColor}
         data-active-color={this.props.activeColor}
       >
-        <div className='logo'>
-          <a
+        <div className='logo' style={{ backgroundColor: 'white' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '20px' }}>
+            <img style={{ alignSelf: 'center', height: '29px', width: '109px' }} src={require("assets/img/app_logo.png")} alt="Logo" />
+          </div>
+          {/* <a
             href='https://www.creative-tim.com'
             className='simple-text logo-mini'
           >
@@ -166,11 +169,11 @@ class Sidebar extends React.Component {
             className='simple-text logo-normal'
           >
             Creative Tim
-          </a>
+          </a> */}
         </div>
 
-        <div className='sidebar-wrapper' ref='sidebar'>
-          <div className='user'>
+        <div className='sidebar-wrapper' ref='sidebar' style={{ backgroundColor: '#6434AD' }}>
+          {/* <div className='user'>
             <div className='photo'>
               <img src={avatar} alt='Avatar' />
             </div>
@@ -211,7 +214,7 @@ class Sidebar extends React.Component {
                 </ul>
               </Collapse>
             </div>
-          </div>
+          </div> */}
           <Nav>{this.createLinks(this.props.routes)}</Nav>
         </div>
       </div>
