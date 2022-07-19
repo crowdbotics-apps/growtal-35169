@@ -17,7 +17,7 @@ const RouteGuard = ({
       render={props => {
         if (isProtected) {
           return accessToken ? (
-            // <Redirect to={{ pathname: '/admin/dashboard' }} />
+            // <Redirect to={{ pathname: '/admin/time_tracker' }} />
             <Component {...props} />
           ) : (
             <Redirect to={{ pathname: '/auth/welcome' }} />

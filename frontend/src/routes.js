@@ -1,51 +1,10 @@
-/*!
-
-=========================================================
-* Paper Dashboard PRO React - v1.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-pro-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-import Buttons from 'views/components/Buttons.js'
-import Calendar from 'views/Calendar.js'
-import Charts from 'views/Charts.js'
-import Dashboard from 'views/Dashboard.js'
-import ExtendedForms from 'views/forms/ExtendedForms.js'
-import ExtendedTables from 'views/tables/ExtendedTables.js'
-import FullScreenMap from 'views/maps/FullScreenMap.js'
-import GoogleMaps from 'views/maps/GoogleMaps.js'
-import GridSystem from 'views/components/GridSystem.js'
-import Icons from 'views/components/Icons.js'
-import LockScreen from 'views/pages/LockScreen.js'
-import Login from 'views/pages/Login.js'
-import Notifications from 'views/components/Notifications.js'
-import Panels from 'views/components/Panels.js'
-import ReactTables from 'views/tables/ReactTables.js'
-import Register from 'views/pages/Register.js'
-import RegularForms from 'views/forms/RegularForms.js'
-import RegularTables from 'views/tables/RegularTables.js'
-import SweetAlert from 'views/components/SweetAlert.js'
-import Timeline from 'views/pages/Timeline.js'
-import Typography from 'views/components/Typography.js'
-import UserProfile from 'views/pages/UserProfile.js'
-import ValidationForms from 'views/forms/ValidationForms.js'
-import VectorMap from 'views/maps/VectorMap.js'
-import Widgets from 'views/Widgets.js'
-import Wizard from 'views/forms/Wizard.js'
 import TimeTracker from './Containers/TimeTracker'
-
 import WelcomeScreen from 'Containers/WelcomeScreen'
 import LoginScreen from 'Containers/LoginScreen'
 import RegisterScreen from 'Containers/RegisterScreen'
 import ForgotScreen from 'Containers/ForgotScreen'
+import DashBoardScreen from 'Containers/DashBoardScreen'
+
 import Images from 'utils/Images'
 
 
@@ -84,7 +43,7 @@ const routes = [
 
   },
   {
-    path: '/dashboard',
+    path: '/time_tracker',
     name: 'Time Tracker',
     icon: 'bi bi-hourglass-top',
     image: Images.Vector_1,
@@ -94,61 +53,61 @@ const routes = [
   },
 
   {
-    path: '/registration',
+    // path: '/registration',
     name: 'Log History',
     icon: 'nc-icon nc-bank',
     image: Images.Vector_2,
-    component: Dashboard,
+    component: DashBoardScreen,
     layout: '/admin',
     isShow: true
   },
 
   {
-    path: '/registration',
+    // path: '/registration',
     name: 'Engagements',
     icon: 'nc-icon nc-bank',
     image: Images.Vector_3,
-    component: Dashboard,
+    component: DashBoardScreen,
     layout: '/admin',
     isShow: true
   },
 
   {
-    path: '/registration',
+    // path: '/registration',
     name: 'Billing Informations',
     icon: 'nc-icon nc-bank',
     image: Images.Vector_4,
-    component: Dashboard,
+    component: DashBoardScreen,
     layout: '/admin',
     isShow: true
   },
 
   {
-    path: '/registration',
+    // path: '/registration',
     name: 'Educational Center',
     icon: 'nc-icon nc-bank',
     image: Images.Vector_5,
-    component: Dashboard,
+    component: DashBoardScreen,
     layout: '/admin',
     isShow: true
   },
 
   {
-    path: '/registration',
+    // path: '/registration',
     name: 'Refer',
     icon: 'nc-icon nc-bank',
     image: Images.Vector_6,
-    component: Dashboard,
+    component: DashBoardScreen,
     layout: '/admin',
     isShow: true
   },
 
   {
-    path: '/registration',
+    // path: '/registration',
     name: 'Resource Area',
     icon: 'nc-icon nc-bank',
     image: Images.Vector_7,
-    component: Dashboard,
+    component: DashBoardScreen,
     layout: '/admin',
     isShow: true
   },

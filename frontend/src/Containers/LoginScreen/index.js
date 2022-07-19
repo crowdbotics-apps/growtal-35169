@@ -251,7 +251,7 @@ const LoginScreen = (props) => {
                     <div style={{ borderBottom: '1px #808080 solid', width: '35%' }} />
                   </div>
                   <div className="social" style={{}}>
-                    <FacebookLogin
+                    {/* <FacebookLogin
                       appId="2124993807656772"
                       autoLoad={false}
                       callback={responseFacebook}
@@ -259,9 +259,11 @@ const LoginScreen = (props) => {
                         <img onClick={renderProps.onClick} src={require("assets/img/facebook_img.png")} />
                         // <button >This is my custom FB button</button>
                       )}
-                    />
-                    {/* <img src={require("assets/img/facebook_img.png")} /> */}
+                    /> */}
+
+                    <img src={Images.linkedIn_social} style={{ height: '60px', width: '60px', backgroundColor: 'white' }} />
                     <img style={{ marginLeft: '20px', marginRight: '20px' }} src={require("assets/img/google_img.png")} />
+
                     {isAppleBtn &&
                       <img src={require("assets/img/apple_img.png")} />
                     }

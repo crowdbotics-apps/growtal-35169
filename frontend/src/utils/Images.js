@@ -6,6 +6,7 @@ export default {
     logo_name: require("assets/img/bg/logo_name.png"),
     email_logo: require("assets/img/email_logo.png"),
     password_logo: require("assets/img/password_logo.png"),
+    linkedIn_social: require("assets/img/linkedIn_social.svg"),
 
     Vector_1: require("assets/img/icons/Vector1.png"),
     Vector_2: require("assets/img/icons/Vector2.png"),
