@@ -125,7 +125,7 @@ const LoginScreen = (props) => {
       <Toaster position="top-center" />
       <div className="register-page">
         <Container>
-          <Row style={{ justifyContent: 'space-between', marginTop: '1rem' }}>
+          <Row style={{ justifyContent: 'space-between' }}>
             <Col className="mr-auto ml-atuo" lg="6" md="6">
               <img src={require("assets/img/left_images.png")} />
             </Col>
@@ -139,10 +139,10 @@ const LoginScreen = (props) => {
                 fontSize: '30px',
                 fontWeight: '700'
               }}>Login</h5>
-              <Card className="card-signup text-center" style={{ padding: '10px 20px 0 20px' }}>
-                <CardBody style={{ paddingTop: '10px' }}>
-                  <Form action="m-0" className="form" method="">
-                    <label style={{ display: 'flex' }}>Email</label>
+              <Card className="card-signup text-center" style={{ paddingLeft: '20px', paddingRight: '20px', marginBottom: '0px' }}>
+                <CardBody style={{ paddingBottom: '0px', paddingTop: '0px' }}>
+                  <Form action="" className="form" method="">
+                    <label style={{ display: 'flex', paddingTop: '30px' }}>Email</label>
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -179,7 +179,7 @@ const LoginScreen = (props) => {
 
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <Label style={{}}>
-                          <Input type="checkbox" style={{ height: '10px', backgroundColor: 'black' }} />
+                          <Input type="checkbox" style={{ backgroundColor: 'black' }} />
                           <span className="form-check-sign" style={{ backgroundColor: '#3A0F7D' }} >
                           </span>
                           <span style={{
@@ -213,7 +213,7 @@ const LoginScreen = (props) => {
                     </FormGroup>
                   </Form>
                 </CardBody>
-                <CardFooter>
+                <CardFooter style={{ padding: '0px' }}>
                   <div style={{ display: 'flex', justifyContent: 'center' }} onClick={(e) => { e.preventDefault(); handlelogin() }}>
                     <div
                       style={{ cursor: 'pointer' }}
@@ -250,7 +250,7 @@ const LoginScreen = (props) => {
                     }}>or login with</p>
                     <div style={{ borderBottom: '1px #808080 solid', width: '35%' }} />
                   </div>
-                  <div className="social" style={{ marginTop: '20px', marginBottom: '25px' }}>
+                  <div className="social" style={{}}>
                     <FacebookLogin
                       appId="2124993807656772"
                       autoLoad={false}
@@ -266,7 +266,7 @@ const LoginScreen = (props) => {
                       <img src={require("assets/img/apple_img.png")} />
                     }
                   </div>
-                  <div style={{ marginTop: '20px', marginBottom: '20px' }}>
+                  <div style={{ marginTop: '20px' }}>
                     <p>
                       Don’t have an account yet?{" "}
                       <Link to="/auth/register" style={{ color: '#3A0F7D' }}>

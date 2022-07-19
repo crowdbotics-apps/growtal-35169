@@ -105,7 +105,7 @@ const RegisterScreen = (props) => {
       <Toaster position="top-center" />
       <div className="register-page">
         <Container>
-          <Row style={{ justifyContent: 'space-between', marginTop: '2rem' }}>
+          <Row style={{ justifyContent: 'space-between' }}>
             <Col className="mr-auto ml-atuo" lg="6" md="6">
               <img src={require("assets/img/left_images.png")} />
             </Col>
@@ -120,8 +120,8 @@ const RegisterScreen = (props) => {
                 fontWeight: '700'
               }}>Join as an Expert</h5>
               <Card className="card-signup text-center" style={{ padding: '30px 20px 0px 20px' }}>
-                <CardBody style={{ paddingTop: '0px' }}>
-                  <Form action="m-0" className="form" method="">
+                <CardBody style={{ paddingTop: '0px', paddingBottom: '0px' }}>
+                  <Form action="" className="form" method="">
                     <label style={{ display: 'flex' }}>Full Name</label>
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
@@ -132,7 +132,7 @@ const RegisterScreen = (props) => {
                       <Input placeholder="Type fullname" type="text" onChange={e => handleOnChange("fullname", e.target.value)} />
                     </InputGroup>
                     {state.fullname.error && (
-                      <label style={{ color: "red", display: 'flex' }}>
+                      <label style={{ color: "red", display: 'flex', marginBottom: '0px' }}>
                         {state.fullname.error}
                       </label>
                     )}
@@ -146,7 +146,7 @@ const RegisterScreen = (props) => {
                       <Input placeholder="Type email" type="email" onChange={e => handleOnChange("email", e.target.value)} />
                     </InputGroup>
                     {state.email.error && (
-                      <label style={{ color: "red", display: 'flex' }}>
+                      <label style={{ color: "red", display: 'flex', marginBottom: '0px' }}>
                         {state.email.error}
                       </label>
                     )}
@@ -161,7 +161,7 @@ const RegisterScreen = (props) => {
                       <Input placeholder="Type password" type="password" onChange={e => handleOnChange("password", e.target.value)} />
                     </InputGroup>
                     {state.password.error && (
-                      <label style={{ color: "red", display: 'flex' }}>
+                      <label style={{ color: "red", display: 'flex', marginBottom: '0px' }}>
                         {state.password.error}
                       </label>
                     )}
@@ -175,7 +175,7 @@ const RegisterScreen = (props) => {
                       <Input placeholder="Type password" type="password" onChange={e => handleOnChange("ConfirmPassword", e.target.value)} />
                     </InputGroup>
                     {state.ConfirmPassword.error && (
-                      <label style={{ color: "red", display: 'flex' }}>
+                      <label style={{ color: "red", display: 'flex', marginBottom: '0px' }}>
                         {state.ConfirmPassword.error}
                       </label>
                     )}
@@ -206,7 +206,7 @@ const RegisterScreen = (props) => {
                     </FormGroup>
                   </Form>
                 </CardBody>
-                <CardFooter>
+                <CardFooter style={{ paddingBottom: '0px', paddingTop: '0px' }}>
                   <div style={{ display: 'flex', justifyContent: 'center' }} onClick={(e) => { e.preventDefault(); handleSignUp() }}>
                     <div
                       style={{ cursor: 'pointer' }}
