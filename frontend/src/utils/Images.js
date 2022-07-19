@@ -7,4 +7,12 @@ export default {
     email_logo: require("assets/img/email_logo.png"),
     password_logo: require("assets/img/password_logo.png"),
 
+    Vector_1: require("assets/img/icons/Vector1.png"),
+    Vector_2: require("assets/img/icons/Vector2.png"),
+    Vector_3: require("assets/img/icons/Vector3.png"),
+    Vector_4: require("assets/img/icons/Vector4.png"),
+    Vector_5: require("assets/img/icons/Vector5.png"),
+    Vector_6: require("assets/img/icons/Vector6.png"),
+    Vector_7: require("assets/img/icons/Vector7.png"),
+
 }

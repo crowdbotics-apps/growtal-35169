@@ -40,12 +40,13 @@ import ValidationForms from 'views/forms/ValidationForms.js'
 import VectorMap from 'views/maps/VectorMap.js'
 import Widgets from 'views/Widgets.js'
 import Wizard from 'views/forms/Wizard.js'
-import Registration from './Containers/Registration'
+import TimeTracker from './Containers/TimeTracker'
 
 import WelcomeScreen from 'Containers/WelcomeScreen'
 import LoginScreen from 'Containers/LoginScreen'
 import RegisterScreen from 'Containers/RegisterScreen'
 import ForgotScreen from 'Containers/ForgotScreen'
+import Images from 'utils/Images'
 
 
 const routes = [
@@ -85,17 +86,71 @@ const routes = [
   {
     path: '/dashboard',
     name: 'Time Tracker',
-    icon: 'nc-icon nc-bank',
-    component: Dashboard,
-    layout: '/admin'
+    icon: 'bi bi-hourglass-top',
+    image: Images.Vector_1,
+    component: TimeTracker,
+    layout: '/admin',
+    isShow: true
   },
 
   {
     path: '/registration',
-    name: 'Registration',
+    name: 'Log History',
     icon: 'nc-icon nc-bank',
-    component: Registration,
-    layout: '/admin'
+    image: Images.Vector_2,
+    component: Dashboard,
+    layout: '/admin',
+    isShow: true
+  },
+
+  {
+    path: '/registration',
+    name: 'Engagements',
+    icon: 'nc-icon nc-bank',
+    image: Images.Vector_3,
+    component: Dashboard,
+    layout: '/admin',
+    isShow: true
+  },
+
+  {
+    path: '/registration',
+    name: 'Billing Informations',
+    icon: 'nc-icon nc-bank',
+    image: Images.Vector_4,
+    component: Dashboard,
+    layout: '/admin',
+    isShow: true
+  },
+
+  {
+    path: '/registration',
+    name: 'Educational Center',
+    icon: 'nc-icon nc-bank',
+    image: Images.Vector_5,
+    component: Dashboard,
+    layout: '/admin',
+    isShow: true
+  },
+
+  {
+    path: '/registration',
+    name: 'Refer',
+    icon: 'nc-icon nc-bank',
+    image: Images.Vector_6,
+    component: Dashboard,
+    layout: '/admin',
+    isShow: true
+  },
+
+  {
+    path: '/registration',
+    name: 'Resource Area',
+    icon: 'nc-icon nc-bank',
+    image: Images.Vector_7,
+    component: Dashboard,
+    layout: '/admin',
+    isShow: true
   },
   // {
   //   collapse: true,
@@ -321,27 +376,27 @@ const routes = [
   //     }
   //   ]
   // },
-  {
-    path: '/widgets',
-    name: 'Widgets',
-    icon: 'nc-icon nc-box',
-    component: Widgets,
-    layout: '/admin'
-  },
-  {
-    path: '/charts',
-    name: 'Charts',
-    icon: 'nc-icon nc-chart-bar-32',
-    component: Charts,
-    layout: '/admin'
-  },
-  {
-    path: '/calendar',
-    name: 'Calendar',
-    icon: 'nc-icon nc-calendar-60',
-    component: Calendar,
-    layout: '/admin'
-  }
+  // {
+  //   path: '/widgets',
+  //   name: 'Widgets',
+  //   icon: 'nc-icon nc-box',
+  //   component: Widgets,
+  //   layout: '/admin'
+  // },
+  // {
+  //   path: '/charts',
+  //   name: 'Charts',
+  //   icon: 'nc-icon nc-chart-bar-32',
+  //   component: Charts,
+  //   layout: '/admin'
+  // },
+  // {
+  //   path: '/calendar',
+  //   name: 'Calendar',
+  //   icon: 'nc-icon nc-calendar-60',
+  //   component: Calendar,
+  //   layout: '/admin'
+  // }
 ]
 
 export default routes

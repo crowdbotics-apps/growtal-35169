@@ -194,10 +194,10 @@ class AdminNavbar extends React.Component {
                     id="navbarDropdownMenuLink"
                     nav
                   >
-                    {/* <p>
+                    <p>
                       <i className="nc-icon nc-bell-55" />
                       <span className="d-lg-none d-md-block">Some Actions</span>
-                    </p> */}
+                    </p>
                   </DropdownToggle>
                   <DropdownMenu
                     persist

@@ -22,6 +22,7 @@ import PerfectScrollbar from 'perfect-scrollbar'
 
 import avatar from 'assets/img/faces/ayo-ogunseinde-2.jpg'
 import logo from 'assets/img/react-logo.png'
+import Images from 'utils/Images'
 
 var ps
 
@@ -107,21 +108,29 @@ class Sidebar extends React.Component {
         )
       }
       return (
-        <li className={this.activeRoute(prop.layout + prop.path)} key={key}>
-          <NavLink to={prop.layout + prop.path} activeClassName=''>
-            {prop.icon !== undefined ? (
-              <>
-                <i className={prop.icon} />
-                <p>{prop.name}</p>
-              </>
-            ) : (
-              <>
-                <span className='sidebar-mini-icon'>{prop.mini}</span>
-                <span className='sidebar-normal'>{prop.name}</span>
-              </>
-            )}
-          </NavLink>
-        </li>
+        <>
+          {prop.isShow && (
+            <li className={this.activeRoute(prop.layout + prop.path)} key={key}>
+              <NavLink to={prop.layout + prop.path} activeClassName=''>
+                {prop.icon !== undefined ? (
+                  <>
+
+                    <div style={{ display: 'flex', flexDirection: 'row' }}>
+                      {/* {prop.image ? <img src={prop.image} style={{ width: '15px', height: '15px', alignSelf: 'center', marginRight: '15px' }} /> : <i className={prop.icon} />} */}
+                      <img src={prop.image} style={{ width: '15px', height: '15px', alignSelf: 'center', marginRight: '15px' }} />
+                      <p>{prop.name}</p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <span className='sidebar-mini-icon'>{prop.mini}</span>
+                    <span className='sidebar-normal'>{prop.name}</span>
+                  </>
+                )}
+              </NavLink>
+            </li>
+          )}
+        </>
       )
     })
   }
@@ -153,7 +162,7 @@ class Sidebar extends React.Component {
         data-active-color={this.props.activeColor}
       >
         <div className='logo' style={{ backgroundColor: 'white' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '20px' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '20px', paddingBottom: '14px' }}>
             <img style={{ alignSelf: 'center', height: '29px', width: '109px' }} src={require("assets/img/app_logo.png")} alt="Logo" />
           </div>
           {/* <a
