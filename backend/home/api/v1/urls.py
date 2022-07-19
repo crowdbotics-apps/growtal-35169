@@ -8,11 +8,11 @@ from home.api.v1.viewsets import (
     UpdateUserViewset,
     UserProfileViewset,
     GoogleLogin,
-    FacebookLogin,
     AppleLogin,
     PrivacyPolicyViewset,
     TermsAndConditionsViewset,
     FeedbackViewset,
+    LinkedinLogin,
 )
 
 router = DefaultRouter()
@@ -31,6 +31,6 @@ urlpatterns = [
     path("password/reset/", include('django_rest_passwordreset.urls', namespace='password_reset')),
     path("password/reset/confirm/<token>/", reset_password_confirm, name='password_reset_confirm'),
     re_path(r'^login/google/$', GoogleLogin.as_view(), name='google_login'),
-    re_path(r'^login/facebook/$', FacebookLogin.as_view(), name='facebook_login'),
     re_path(r'^login/apple/$', AppleLogin.as_view(), name='apple_login'),
+    re_path(r'^login/linkedin/$', LinkedinLogin.as_view(), name='linkedin_login'),
 ]
