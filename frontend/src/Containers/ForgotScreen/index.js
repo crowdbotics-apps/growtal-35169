@@ -18,6 +18,7 @@ import {
   Container,
   Row,
   Col,
+  Spinner
 } from "reactstrap";
 import Images from "utils/Images";
 
@@ -34,7 +35,8 @@ const ForgotScreen = (props) => {
 
   const {
     history,
-    forgotRequest
+    forgotRequest,
+    requesting
   } = props
 
   const stateSchema = {
@@ -61,7 +63,6 @@ const ForgotScreen = (props) => {
       email: state.email.value,
     }
     forgotRequest(data)
-    console.log('data....', data);
   }
 
 
@@ -121,7 +122,13 @@ const ForgotScreen = (props) => {
                         color: 'white',
                         fontWeight: '700',
                         fontSize: '16px'
-                      }}>Submit</p>
+                      }}>{requesting ? <Spinner
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                      /> : 'Submit'}</p>
                     </div>
                   </div>
                   {/* <Button
@@ -157,7 +164,7 @@ const ForgotScreen = (props) => {
 
 const mapStateToProps = state => ({
   // userData: state.LoginScreen.user,
-  // requesting: state.login.requesting,
+  requesting: state.ForgotScreen.requesting,
   // error: state.login.error
 })
 

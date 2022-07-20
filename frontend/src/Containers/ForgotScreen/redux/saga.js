@@ -36,10 +36,8 @@ function forgotPasswordAPI(data) {
 }
 
 function* forgotPassword({ data }) {
-    console.log('saga data', data);
     try {
         const response = yield call(forgotPasswordAPI, data);
-        console.log('forgotPassword success....', response);
         toast.success(`ForgotPassword Successfully`);
         // sessionStorage.setItem('authToken', response?.data?.token);
         // sessionStorage.setItem('user', response?.data?.user?.id.toString());
@@ -51,7 +49,6 @@ function* forgotPassword({ data }) {
         // )
     } catch (e) {
         const { response } = e
-        console.log('forgotPassword failure....', response);
         toast.error(`${response?.data?.approval_error[0]}`);
         // yield put(loginFaluire(response));
     }
@@ -72,22 +69,19 @@ function newPasswordAPI(data) {
 }
 
 function* newPassword({ data }) {
-    console.log('saga data', data);
     try {
         const response = yield call(newPasswordAPI, data);
-        console.log('newPassword success....', response);
         toast.success(`newPassword Successfully`);
         // sessionStorage.setItem('authToken', response?.data?.token);
         // sessionStorage.setItem('user', response?.data?.user?.id.toString());
         // yield put(loginSuccess(response?.data?.user));
         yield put(
             push({
-                pathname: '/auth/change-password'
+                pathname: '/auth/login'
             })
         )
     } catch (e) {
         const { response } = e
-        console.log('newPassword failure....', response);
         toast.error(`${response?.data?.approval_error[0]}`);
         // yield put(loginFaluire(response));
     }

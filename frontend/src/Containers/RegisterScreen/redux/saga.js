@@ -43,7 +43,6 @@ function signUpAPI(data) {
 function* signUp({ data }) {
     try {
         const response = yield call(signUpAPI, data);
-        console.log('signUp success........', response);
         toast.success(`Register Successfully`);
         yield put(
             push({
@@ -55,7 +54,6 @@ function* signUp({ data }) {
         // yield put(loginSuccess(response?.data?.user));
     } catch (e) {
         const { response } = e
-        console.log('signUp failure........', response);
         // yield put(loginFaluire(response));
     }
 }

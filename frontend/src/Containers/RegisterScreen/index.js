@@ -88,7 +88,6 @@ const RegisterScreen = (props) => {
           password: state.password.value,
           user_type: "Expert"
         }
-        console.log('data', data);
         registerRequest(data)
       } else {
         toast.error('Accept Terms and Condition');
@@ -97,8 +96,6 @@ const RegisterScreen = (props) => {
       toast.error('All Fields are required');
     }
   }
-
-  console.log('check..........', check);
 
   return (
     <>
@@ -187,8 +184,7 @@ const RegisterScreen = (props) => {
 
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <Label check>
-                          <Input type="checkbox" style={{}}
-                            onClick={(e) => console.log(e)}
+                          <Input type="checkbox"
                             onChange={() => setCheck(!check)}
                           />
                           <span className="form-check-sign" style={{ height: '10px', backgroundColor: '#3A0F7D' }} />
