@@ -22,7 +22,9 @@ import {
 } from "reactstrap";
 import Images from "utils/Images";
 
-import { loginRequest, loginViaFacebookRequest } from "./redux/actions";
+
+
+import { loginRequest, loginViaLinkedInRequest, loginViaGoogleRequest } from "./redux/actions";
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 import useForm from "../../utils/useForm"
@@ -38,17 +40,35 @@ import { OS, currentBrowser } from "utils/platform";
 // import FacebookLogin from 'react-facebook-login';
 
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+import { LinkedIn } from 'react-linkedin-login-oauth2';
 
 
+
+import { GoogleLogin } from 'react-google-login';
+import { gapi } from "gapi-script";
 
 const LoginScreen = (props) => {
 
-  const { history, loginRequest, userData, loginViaFacebookRequest, requesting } = props
+
+
+  const clientId = "1048984404625-3kjheoht0ribe92j49a50kbnmettv0eu.apps.googleusercontent.com"
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: ""
+      })
+    };
+    gapi.load('client:auth2', start);
+  }, [])
+
+  const { history, loginRequest, userData, loginViaLinkedInRequest, loginViaGoogleRequest, requesting } = props
 
   const [isAppleBtn, setAppleBtn] = useState(false)
 
   const [login, setLogin] = useState(false);
   const [FbData, setFbData] = useState(false);
+  const [linkedInToken, setlinkedInToken] = useState(false);
   const [picture, setPicture] = useState('');
 
   const stateSchema = {
@@ -108,15 +128,48 @@ const LoginScreen = (props) => {
     // }
   }
 
+  // useEffect(() => {
+  //   if (FbData?.accessToken) {
+  //     console.log('FbData...', FbData.accessToken);
+  //     // setLogin(true);
+  //     loginViaFacebookRequest({ access_token: FbData.accessToken })
+  //   } else {
+  //     // setLogin(false);
+  //   }
+  // }, [FbData])
+
   useEffect(() => {
-    if (FbData?.accessToken) {
-      console.log('FbData...', FbData.accessToken);
-      // setLogin(true);
-      loginViaFacebookRequest({ access_token: FbData.accessToken })
-    } else {
-      // setLogin(false);
+    const query = new URLSearchParams(props.location.search)
+    const token = query.get('code')
+    console.log('token', token);
+    if (window.opener && window.opener !== window) {
+      const query = new URLSearchParams(props.location.search)
+      const token = query.get('code')
+      setlinkedInToken(token);
+      responseLinkedIn();
+      setTimeout(() => {
+        window.close();
+      }, 500)
     }
-  }, [FbData])
+  }, [])
+
+  const responseLinkedIn = () => {
+    const data = {
+      access_token: linkedInToken
+    }
+    loginViaLinkedInRequest(data)
+  }
+
+  const responseGoogle = (res) => {
+    console.log('res....', res.accessToken);
+    const data = {
+      access_token: res.accessToken
+    }
+    loginViaGoogleRequest(data)
+  }
+
+
+  console.log("linkedInToken", linkedInToken);
 
   console.log('login.........', FbData);
 
@@ -261,8 +314,49 @@ const LoginScreen = (props) => {
                       )}
                     /> */}
 
-                    <img src={Images.linkedIn_social} style={{ height: '60px', width: '60px', backgroundColor: 'white' }} />
-                    <img style={{ marginLeft: '20px', marginRight: '20px' }} src={require("assets/img/google_img.png")} />
+                    <LinkedIn
+                      clientId="77s7tpyzrmsjq8"
+                      redirectUri={`http://localhost:3000/auth/login`}
+                      onSuccess={(code) => {
+                        console.log('s', code);
+                      }}
+                      onFailure={(error) => {
+                        console.log('f', error);
+                      }}
+                    >
+                      {({ linkedInLogin }) => (
+                        <img
+                          onClick={linkedInLogin}
+                          src={Images.linkedIn_social}
+                          style={{ height: '60px', width: '60px', backgroundColor: 'white' }}
+                        />
+                      )}
+                    </LinkedIn>
+
+                    {/* <LinkedIn
+                      clientId="77s7tpyzrmsjq8"
+                      onFailure={handleFailure}
+                      onSuccess={handleSuccess}
+                      redirectUri={`https://www.google.com`}
+                    >
+                      <img src={Images.linkedIn_social} style={{ height: '60px', width: '60px', backgroundColor: 'white' }} />
+                    </LinkedIn> */}
+
+                    {/* <img onClick={requestProfile} src={Images.linkedIn_social} style={{ height: '60px', width: '60px', backgroundColor: 'white' }} /> */}
+
+
+
+                    <GoogleLogin
+                      clientId={clientId}
+                      render={renderProps => (
+                        // <button onClick={renderProps.onClick} disabled={renderProps.disabled}>This is my custom Google button</button>
+                        <img onClick={renderProps.onClick} style={{ marginLeft: '20px', marginRight: '20px' }} src={require("assets/img/google_img.png")} />
+                      )}
+                      buttonText="Login"
+                      onSuccess={responseGoogle}
+                      onFailure={responseGoogle}
+                      cookiePolicy={'single_host_origin'}
+                    />
 
                     {isAppleBtn &&
                       <img src={require("assets/img/apple_img.png")} />
@@ -311,7 +405,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loginRequest: data => dispatch(loginRequest(data)),
-  loginViaFacebookRequest: (data) => dispatch(loginViaFacebookRequest(data))
+  loginViaLinkedInRequest: (data) => dispatch(loginViaLinkedInRequest(data)),
+  loginViaGoogleRequest: (data) => dispatch(loginViaGoogleRequest(data))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)
 

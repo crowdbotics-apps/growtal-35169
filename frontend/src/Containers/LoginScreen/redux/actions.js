@@ -2,12 +2,12 @@ import {
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
     LOGING_FALUIRE,
-    LOGIN_VIA_FACEBOOK_REQUEST,
-    LOGIN_VIA_FACEBOOK_SUCCESS,
-    LOGIN_VIA_FACEBOOK_FALUIRE,
-    // LOGIN_VIA_GOOGLE_REQUEST,
-    // LOGIN_VIA_GOOGLE_SUCCESS,
-    // LOGIN_VIA_GOOGLE_FALUIRE,
+    LOGIN_VIA_LINKEDIN_REQUEST,
+    LOGIN_VIA_LINKEDIN_SUCCESS,
+    LOGIN_VIA_LINKEDIN_FALUIRE,
+    LOGIN_VIA_GOOGLE_REQUEST,
+    LOGIN_VIA_GOOGLE_SUCCESS,
+    LOGIN_VIA_GOOGLE_FALUIRE,
 } from './types';
 
 export const loginRequest = (data) => ({
@@ -25,32 +25,32 @@ export const loginFaluire = (data) => ({
     data,
 });
 
-export const loginViaFacebookRequest = (data) => ({
-    type: LOGIN_VIA_FACEBOOK_REQUEST,
+export const loginViaLinkedInRequest = (data) => ({
+    type: LOGIN_VIA_LINKEDIN_REQUEST,
     data,
 });
 
-export const loginViaFacebookSuccess = (data) => ({
-    type: LOGIN_VIA_FACEBOOK_SUCCESS,
+export const loginViaLinkedInSuccess = (data) => ({
+    type: LOGIN_VIA_LINKEDIN_SUCCESS,
     data,
 });
 
-export const loginViaFacebookFaluire = (data) => ({
-    type: LOGIN_VIA_FACEBOOK_FALUIRE,
+export const loginViaLinkedInFaluire = (data) => ({
+    type: LOGIN_VIA_LINKEDIN_FALUIRE,
     data,
 });
 
-// export const loginViaGoogleRequest = (data) => ({
-//     type: LOGIN_VIA_GOOGLE_REQUEST,
-//     data,
-// });
+export const loginViaGoogleRequest = (data) => ({
+    type: LOGIN_VIA_GOOGLE_REQUEST,
+    data,
+});
 
-// export const loginViaGoogleSuccess = (data) => ({
-//     type: LOGIN_VIA_GOOGLE_SUCCESS,
-//     data,
-// });
+export const loginViaGoogleSuccess = (data) => ({
+    type: LOGIN_VIA_GOOGLE_SUCCESS,
+    data,
+});
 
-// export const loginViaGoogleFaluire = (data) => ({
-//     type: LOGIN_VIA_GOOGLE_FALUIRE,
-//     data,
-// });
+export const loginViaGoogleFaluire = (data) => ({
+    type: LOGIN_VIA_GOOGLE_FALUIRE,
+    data,
+});

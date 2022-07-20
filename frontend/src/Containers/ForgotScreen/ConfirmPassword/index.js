@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+import { useLocation } from "react-router-dom"
+
 
 // reactstrap components
 import {
@@ -21,33 +24,46 @@ import {
 } from "reactstrap";
 import Images from "utils/Images";
 
-import { forgotRequest } from "./redux/actions";
+// import { forgotRequest } from "./redux/actions";
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
-import useForm from "../../utils/useForm"
-import validator from "../../utils/validation"
+import useForm from "../../../utils/useForm"
+import validator from "../../../utils/validation"
 
 import { Toaster } from "react-hot-toast"
+import { changeNewPassword } from "../redux/actions";
 
 
-const ForgotScreen = (props) => {
+const ConfirmPassword = (props) => {
 
   const {
     history,
-    forgotRequest
+    forgotRequest,
+    changeNewPassword
   } = props
 
+  const query = new URLSearchParams(props.location.search)
+  const token = query.get('token')
+
   const stateSchema = {
-    email: {
+    password: {
+      value: "",
+      error: ""
+    },
+    confirmPassword: {
       value: "",
       error: ""
     },
   }
 
   const validationStateSchema = {
-    email: {
+    password: {
       required: true,
-      validator: validator.email
+      // validator: validator.email
+    },
+    confirmPassword: {
+      required: true,
+      // validator: validator.email
     },
   }
 
@@ -58,12 +74,12 @@ const ForgotScreen = (props) => {
 
   const handleForgotPass = () => {
     const data = {
-      email: state.email.value,
+      password: `${state.password.value}`,
+      token: `${token}`
     }
-    forgotRequest(data)
+    changeNewPassword(data)
     console.log('data....', data);
   }
-
 
   return (
     <>
@@ -82,22 +98,37 @@ const ForgotScreen = (props) => {
                 fontFamily: 'Libre Caslon Text',
                 fontSize: '30px',
                 fontWeight: '700'
-              }}>Forgot Password</p>
+              }}>Change Password</p>
               <Card className="card-signup text-center" style={{ padding: '30px' }}>
                 <CardBody style={{ paddingTop: '30px' }}>
                   <Form action="m-0" className="form" method="">
-                    <label style={{ display: 'flex' }}>Eamil</label>
+                    <label style={{ display: 'flex' }}>Password</label>
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
                           {/* <i className="nc-icon nc-email-85" /> */}
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input placeholder="Type email" type="email" onChange={e => handleOnChange("email", e.target.value)} />
+                      <Input placeholder="Type Password" type="password" onChange={e => handleOnChange("password", e.target.value)} />
                     </InputGroup>
-                    {state.email.error && (
+                    {state.password.error && (
                       <label style={{ color: "red", display: 'flex' }}>
-                        {state.email.error}
+                        {state.password.error}
+                      </label>
+                    )}
+
+                    <label style={{ display: 'flex' }}>Confirm Password</label>
+                    <InputGroup>
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          {/* <i className="nc-icon nc-email-85" /> */}
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input placeholder="Type Confirm Password" type="password" onChange={e => handleOnChange("confirmPassword", e.target.value)} />
+                    </InputGroup>
+                    {state.confirmPassword.error && (
+                      <label style={{ color: "red", display: 'flex' }}>
+                        {state.confirmPassword.error}
                       </label>
                     )}
 
@@ -136,9 +167,9 @@ const ForgotScreen = (props) => {
                 </CardFooter>
 
               </Card>
-              <Link to="/auth/login">
+              {/* <Link to="/auth/login">
                 <p style={{ color: 'white' }}> <img src={require("assets/img/back_vector.png")} style={{ marginRight: '10px' }} />Cancel, Forgot Password</p>
-              </Link>
+              </Link> */}
             </Col>
           </Row>
         </Container>
@@ -162,7 +193,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  forgotRequest: data => dispatch(forgotRequest(data)),
+  changeNewPassword: data => dispatch(changeNewPassword(data)),
   // resetMsg: () => dispatch(resetMsg())
 })
-export default connect(mapStateToProps, mapDispatchToProps)(ForgotScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(ConfirmPassword)

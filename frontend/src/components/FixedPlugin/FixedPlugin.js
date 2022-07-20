@@ -1,24 +1,9 @@
-/*!
 
-=========================================================
-* Paper Dashboard PRO React - v1.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-pro-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 // react plugin used to create switch buttons
 import Switch from 'react-bootstrap-switch'
 
-import {Button} from 'reactstrap'
+import { Button } from 'reactstrap'
 
 class FixedPlugin extends Component {
   constructor(props) {
@@ -30,9 +15,9 @@ class FixedPlugin extends Component {
   }
   handleClick() {
     if (this.state.classes === 'dropdown') {
-      this.setState({classes: 'dropdown'})
+      this.setState({ classes: 'dropdown' })
     } else {
-      this.setState({classes: 'dropdown'})
+      this.setState({ classes: 'dropdown' })
     }
   }
   render() {
@@ -154,7 +139,7 @@ class FixedPlugin extends Component {
             </li>
             <li className='button-container'>
               <Button
-                href='https://www.creative-tim.com/product/paper-dashboard-pro-react'
+                href='https://www.creative-tim.com/product/GrowTal'
                 color='primary'
                 block
                 className='btn-round'
@@ -165,7 +150,7 @@ class FixedPlugin extends Component {
             </li>
             <li className='button-container'>
               <Button
-                href='https://demos.creative-tim.com/paper-dashboard-pro-react/#/documentation/tutorial'
+                href='https://demos.creative-tim.com/GrowTal/#/documentation/tutorial'
                 color='default'
                 block
                 className='btn-round'

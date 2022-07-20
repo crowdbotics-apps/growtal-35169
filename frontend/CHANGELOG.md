@@ -4,9 +4,9 @@
 ### Bug fixing
 - Move the `barPercentage` from the `xAxes` to the `datasets` from inside `src/variables/charts.js` to stop warnings from the new Chart.js API
 - Add `btnSize=""` to all Sweet Alerts to make the buttons look better
-- https://github.com/creativetimofficial/ct-paper-dashboard-pro-react/issues/9 (could not reproduce the issue, so we've left the perfect-scrollbar initialization as is, if there are layout problems, please delete the bits of code specified here: https://github.com/creativetimofficial/ct-paper-dashboard-pro-react/issues/9#issuecomment-590724592)
-- https://github.com/creativetimofficial/ct-paper-dashboard-pro-react/issues/8 (solved by the updated dependencies)
-- https://github.com/creativetimofficial/ct-paper-dashboard-pro-react/issues/6 - solution to this is to change the usage of the ModalHeader from Reactstrap to simple Bootstrap ones:
+- https://github.com/creativetimofficial/ct-GrowTal/issues/9 (could not reproduce the issue, so we've left the perfect-scrollbar initialization as is, if there are layout problems, please delete the bits of code specified here: https://github.com/creativetimofficial/ct-GrowTal/issues/9#issuecomment-590724592)
+- https://github.com/creativetimofficial/ct-GrowTal/issues/8 (solved by the updated dependencies)
+- https://github.com/creativetimofficial/ct-GrowTal/issues/6 - solution to this is to change the usage of the ModalHeader from Reactstrap to simple Bootstrap ones:
 So, instead of:
 ```
 <ModalHeader className="justify-content-center" toggle={this.toggleModalDemo}>

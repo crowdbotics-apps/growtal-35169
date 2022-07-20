@@ -1,23 +1,7 @@
-/*!
-
-=========================================================
-* Paper Dashboard PRO React - v1.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-pro-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from 'react'
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from 'perfect-scrollbar'
-import {Route, Switch} from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 import AdminNavbar from 'components/Navbars/AdminNavbar.js'
 import Footer from 'components/Footer/Footer.js'
@@ -77,16 +61,16 @@ class Admin extends React.Component {
     })
   }
   handleActiveClick = color => {
-    this.setState({activeColor: color})
+    this.setState({ activeColor: color })
   }
   handleBgClick = color => {
-    this.setState({backgroundColor: color})
+    this.setState({ backgroundColor: color })
   }
   handleMiniClick = () => {
     if (document.body.classList.contains('sidebar-mini')) {
-      this.setState({sidebarMini: false})
+      this.setState({ sidebarMini: false })
     } else {
-      this.setState({sidebarMini: true})
+      this.setState({ sidebarMini: true })
     }
     document.body.classList.toggle('sidebar-mini')
   }
@@ -105,7 +89,7 @@ class Admin extends React.Component {
           {
             // we don't want the Footer to be rendered on full screen maps page
             this.props.location.pathname.indexOf('full-screen-map') !== -1 &&
-              null
+            null
             // (
             //   <Footer fluid />
             // )

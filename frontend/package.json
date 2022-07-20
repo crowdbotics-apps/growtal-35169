@@ -1,5 +1,5 @@
 {
-  "name": "paper-dashboard-pro-react",
+  "name": "GrowTal",
   "version": "1.2.0",
   "description": "Premium Bootstrap 4 Paper UI Design",
   "main": "index.js",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/creativetimofficial/ct-paper-dashboard-pro-react.git"
+    "url": "git+https://github.com/creativetimofficial/ct-GrowTal.git"
   },
   "keywords": [
     "react",
@@ -28,9 +28,9 @@
   ],
   "author": "Creative Tim <hello@creative-tim.com> (https://www.creative-tim.com)",
   "bugs": {
-    "url": "https://github.com/creativetimofficial/ct-paper-dashboard-pro-react/issues"
+    "url": "https://github.com/creativetimofficial/ct-GrowTal/issues"
   },
-  "homepage": "https://demos.creative-tim.com/paper-dashboard-pro-react/#/",
+  "homepage": "https://demos.creative-tim.com/GrowTal/#/",
   "dependencies": {
     "axios": "^0.26.0",
     "bootstrap": "4.5.0",
@@ -38,6 +38,7 @@
     "classnames": "2.2.6",
     "connected-react-router": "^6.9.1",
     "firebase": "^9.9.0",
+    "gapi-script": "^1.2.0",
     "history": "4.10.1",
     "match-sorter": "4.1.0",
     "moment": "2.26.0",
@@ -54,9 +55,11 @@
     "react-datetime": "2.16.3",
     "react-dom": "16.13.1",
     "react-facebook-login": "^4.1.1",
+    "react-google-login": "^5.2.2",
     "react-google-maps": "9.4.5",
     "react-hot-toast": "^2.3.0",
     "react-jvectormap": "0.0.16",
+    "react-linkedin-login-oauth2": "^2.0.1",
     "react-notification-alert": "0.0.12",
     "react-redux": "^7.2.4",
     "react-router": "^5.2.0",

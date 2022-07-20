@@ -12,7 +12,7 @@ gulp.task("licenses", async function () {
 * Paper Dashboard PRO React - v1.2.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-pro-react
+* Product Page: https://www.creative-tim.com/product/GrowTal
 * Copyright 2020 Creative Tim (http://www.creative-tim.com)
 
 * Coded by Creative Tim
@@ -35,7 +35,7 @@ gulp.task("licenses", async function () {
 * Paper Dashboard PRO React - v1.2.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-pro-react
+* Product Page: https://www.creative-tim.com/product/GrowTal
 * Copyright 2020 Creative Tim (http://www.creative-tim.com)
 
 * Coded by Creative Tim
@@ -58,7 +58,7 @@ gulp.task("licenses", async function () {
 * Paper Dashboard PRO React - v1.2.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-pro-react
+* Product Page: https://www.creative-tim.com/product/GrowTal
 * Copyright 2020 Creative Tim (http://www.creative-tim.com)
 
 * Coded by Creative Tim
