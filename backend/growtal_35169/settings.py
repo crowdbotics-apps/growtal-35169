@@ -41,7 +41,6 @@ try:
 except (DefaultCredentialsError, PermissionDenied):
     pass
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -53,7 +52,6 @@ SITE_ID = 1
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 SECURE_SSL_REDIRECT = env.bool("SECURE_REDIRECT", default=False)
-
 
 # Application definition
 
@@ -69,6 +67,7 @@ INSTALLED_APPS = [
 LOCAL_APPS = [
     'home',
     'users.apps.UsersConfig',
+    'dashboard',
 ]
 THIRD_PARTY_APPS = [
     'rest_framework',
@@ -80,8 +79,8 @@ THIRD_PARTY_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.apple',
+    'allauth.socialaccount.providers.linkedin_oauth2',
     'django_extensions',
     'drf_yasg',
     'storages',
@@ -124,7 +123,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'growtal_35169.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -164,7 +162,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -173,7 +170,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -224,7 +220,6 @@ EMAIL_HOST_PASSWORD = env.str("SENDGRID_PASSWORD", "")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-
 # AWS S3 config
 AWS_ACCESS_KEY_ID = env.str("AWS_ACCESS_KEY_ID", "")
 AWS_SECRET_ACCESS_KEY = env.str("AWS_SECRET_ACCESS_KEY", "")
@@ -232,10 +227,10 @@ AWS_STORAGE_BUCKET_NAME = env.str("AWS_STORAGE_BUCKET_NAME", "")
 AWS_STORAGE_REGION = env.str("AWS_STORAGE_REGION", "")
 
 USE_S3 = (
-    AWS_ACCESS_KEY_ID and
-    AWS_SECRET_ACCESS_KEY and
-    AWS_STORAGE_BUCKET_NAME and
-    AWS_STORAGE_REGION
+        AWS_ACCESS_KEY_ID and
+        AWS_SECRET_ACCESS_KEY and
+        AWS_STORAGE_BUCKET_NAME and
+        AWS_STORAGE_REGION
 )
 
 if USE_S3:
@@ -265,21 +260,19 @@ if DEBUG or not (EMAIL_HOST_USER and EMAIL_HOST_PASSWORD):
         logging.warning("You should setup `SENDGRID_USERNAME` and `SENDGRID_PASSWORD` env vars to send emails.")
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-
-# GCP config 
+# GCP config
 GS_BUCKET_NAME = env.str("GS_BUCKET_NAME", "")
 if GS_BUCKET_NAME:
     DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
     STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
     GS_DEFAULT_ACL = "publicRead"
 
-
 # >>>  Social Authentication Settings
 SOCIALACCOUNT_QUERY_EMAIL = True
 SOCIALACCOUNT_ENABLED = True
 LOGIN_REDIRECT_URL = "/"
-ACCOUNT_EMAIL_REQUIRED=True
-ACCOUNT_USERNAME_REQURIED=True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQURIED = True
 ACCOUNT_ALLOW_REGISTRATION = env.bool("ACCOUNT_ALLOW_REGISTRATION", True)
 SOCIALACCOUNT_ALLOW_REGISTRATION = env.bool("SOCIALACCOUNT_ALLOW_REGISTRATION", True)
 SOCIALACCOUNT_PROVIDERS = {
@@ -292,28 +285,6 @@ SOCIALACCOUNT_PROVIDERS = {
             'access_type': 'online',
         }
     },
-    'facebook': {
-        'METHOD': 'oauth2',
-        'SDK_URL': '//connect.facebook.net/{locale}/sdk.js',
-        'SCOPE': ['email', 'public_profile'],
-        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
-        'INIT_PARAMS': {'cookie': True},
-        'FIELDS': [
-            'id',
-            'first_name',
-            'last_name',
-            'middle_name',
-            'name',
-            'name_format',
-            'picture',
-            'short_name',
-            'email',
-        ],
-        'EXCHANGE_TOKEN': True,
-        'LOCALE_FUNC': 'path.to.callable',
-        'VERIFIED_EMAIL': False,
-        'VERSION': 'v7.0',
-    },
     "apple": {
         "APP": {
             "client_id": env.str("APPLE_CLIENT_ID", ""),
@@ -321,6 +292,23 @@ SOCIALACCOUNT_PROVIDERS = {
             "key": env.str("APPLE_KEY", ""),
             "certificate_key": env.str("APPLE_CERTIFICATE_KEY", "")
         }
+    },
+    'linkedin': {
+        'HEADERS': {
+            'x-li-src': 'msdk'
+        },
+        'SCOPE': [
+            'r_basicprofile',
+            'r_emailaddress'
+        ],
+        'PROFILE_FIELDS': [
+            'id',
+            'first-name',
+            'last-name',
+            'email-address',
+            'picture-url',
+            'public-profile-url',
+        ]
     }
 }
 

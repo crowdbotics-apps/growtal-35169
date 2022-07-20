@@ -8,13 +8,11 @@ from rest_framework.viewsets import ModelViewSet, ViewSet
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
-from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 from allauth.socialaccount.providers.apple.views import AppleOAuth2Adapter
+from allauth.socialaccount.providers.linkedin_oauth2.views import LinkedInOAuth2Adapter
 from dj_rest_auth.registration.views import SocialLoginView
 from allauth.socialaccount.models import SocialAccount
-
-from home.models import Feedback
 from users.models import Profile
 from modules.privacy_policy.models import PrivacyPolicy
 from modules.terms_and_conditions.models import TermAndCondition
@@ -100,35 +98,6 @@ class GoogleLogin(SocialLoginView):
         return response
 
 
-class FacebookLogin(SocialLoginView):
-    adapter_class = FacebookOAuth2Adapter
-    serializer_class = CustomSocialLoginSerializer
-    permission_classes = [AllowAny, ]
-
-    def get_response(self):
-        serializer_class = self.get_response_serializer()
-        user = self.user
-        user_extra_data = SocialAccount.objects.filter(user=self.request.user).first().extra_data
-        name = user_extra_data["name"]
-        profile_image_url = user_extra_data["picture"]["data"]["url"]
-        if not user.profile_picture:
-            save_image_from_url(user, profile_image_url, name)
-        user_detail = UserSerializer(user, many=False)
-        serializer = serializer_class(instance=self.token, context={'request': self.request})
-        resp = serializer.data
-        if not user_detail.data.get('approve'):
-            return Response(
-                {'non_field_errors': 'No Account is Registered with Email associated with your Social Account'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-        resp["token"] = resp["key"]
-        resp.pop("key")
-        resp["user"] = user_detail.data
-        resp['profile'] = Profile.objects.filter(user_id=user_detail.data.get('id')).first()
-        response = Response(resp, status=status.HTTP_200_OK)
-        return response
-
-
 class AppleLogin(SocialLoginView):
     authentication_classes = []
     permission_classes = [AllowAny]
@@ -146,8 +115,33 @@ class AppleLogin(SocialLoginView):
                 {'non_field_errors': 'No Account is Registered with Email associated with your Social Account'},
                 status=status.HTTP_400_BAD_REQUEST
             )
-        resp["user"] = user_detail.data
         resp["token"] = resp["key"]
+        resp.pop("key")
+        resp["user"] = user_detail.data
+        resp['profile'] = Profile.objects.filter(user_id=user_detail.data.get('id')).first()
+        response = Response(resp, status=status.HTTP_200_OK)
+        return response
+
+
+class LinkedinLogin(SocialLoginView):
+    adapter_class = LinkedInOAuth2Adapter
+    serializer_class = CustomSocialLoginSerializer
+    permission_classes = [AllowAny]
+
+    def get_response(self):
+        serializer_class = self.get_response_serializer()
+        user = self.user
+        user_detail = UserSerializer(user, many=False)
+        serializer = serializer_class(instance=self.token, context={'request': self.request})
+        resp = serializer.data
+        if not user_detail.data.get('approve'):
+            return Response(
+                {'non_field_errors': 'No Account is Registered with Email associated with your Social Account'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        resp["token"] = resp["key"]
+        resp.pop("key")
+        resp["user"] = user_detail.data
         resp['profile'] = Profile.objects.filter(user_id=user_detail.data.get('id')).first()
         response = Response(resp, status=status.HTTP_200_OK)
         return response
