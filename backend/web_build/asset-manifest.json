@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/paper-dashboard-pro-react/static/css/main.73e9d145.chunk.css",
+    "main.js": "/paper-dashboard-pro-react/static/js/main.ab683332.chunk.js",
+    "main.js.map": "/paper-dashboard-pro-react/static/js/main.ab683332.chunk.js.map",
+    "runtime-main.js": "/paper-dashboard-pro-react/static/js/runtime-main.d5d6bbff.js",
+    "runtime-main.js.map": "/paper-dashboard-pro-react/static/js/runtime-main.d5d6bbff.js.map",
+    "static/css/2.857fa345.chunk.css": "/paper-dashboard-pro-react/static/css/2.857fa345.chunk.css",
+    "static/js/2.b13e2e99.chunk.js": "/paper-dashboard-pro-react/static/js/2.b13e2e99.chunk.js",
+    "static/js/2.b13e2e99.chunk.js.map": "/paper-dashboard-pro-react/static/js/2.b13e2e99.chunk.js.map",
+    "index.html": "/paper-dashboard-pro-react/index.html",
+    "precache-manifest.a030a0d5d0ab1eb7e9865076f1e3f550.js": "/paper-dashboard-pro-react/precache-manifest.a030a0d5d0ab1eb7e9865076f1e3f550.js",
+    "service-worker.js": "/paper-dashboard-pro-react/service-worker.js",
+    "static/css/2.857fa345.chunk.css.map": "/paper-dashboard-pro-react/static/css/2.857fa345.chunk.css.map",
+    "static/css/main.73e9d145.chunk.css.map": "/paper-dashboard-pro-react/static/css/main.73e9d145.chunk.css.map",
+    "static/js/2.b13e2e99.chunk.js.LICENSE.txt": "/paper-dashboard-pro-react/static/js/2.b13e2e99.chunk.js.LICENSE.txt",
+    "static/js/main.ab683332.chunk.js.LICENSE.txt": "/paper-dashboard-pro-react/static/js/main.ab683332.chunk.js.LICENSE.txt",
+    "static/media/auth_bg.png": "/paper-dashboard-pro-react/static/media/auth_bg.9e60fb6f.png",
+    "static/media/ayo-ogunseinde-2.jpg": "/paper-dashboard-pro-react/static/media/ayo-ogunseinde-2.bfc688ca.jpg",
+    "static/media/bg_img1.png": "/paper-dashboard-pro-react/static/media/bg_img1.8df65cd4.png",
+    "static/media/left_images.png": "/paper-dashboard-pro-react/static/media/left_images.45cf82d1.png",
+    "static/media/left_img.png": "/paper-dashboard-pro-react/static/media/left_img.3238a2ba.png",
+    "static/media/linkedIn_social.svg": "/paper-dashboard-pro-react/static/media/linkedIn_social.d7a897bb.svg",
+    "static/media/paper-dashboard.scss?v=1.2.0": "/paper-dashboard-pro-react/static/media/nucleo-icons.f32ed5ad.eot",
+    "static/media/react-logo.png": "/paper-dashboard-pro-react/static/media/react-logo.79075919.png",
+    "static/media/simple_bg.png": "/paper-dashboard-pro-react/static/media/simple_bg.027ff43f.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d5d6bbff.js",
+    "static/css/2.857fa345.chunk.css",
+    "static/js/2.b13e2e99.chunk.js",
+    "static/css/main.73e9d145.chunk.css",
+    "static/js/main.ab683332.chunk.js"
+  ]
+}
