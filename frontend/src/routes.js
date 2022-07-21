@@ -5,6 +5,8 @@ import RegisterScreen from 'Containers/RegisterScreen'
 import ForgotScreen from 'Containers/ForgotScreen'
 import DashBoardScreen from 'Containers/DashBoardScreen'
 import ConfirmPassword from 'Containers/ForgotScreen/ConfirmPassword'
+import LogHour from 'Containers/DashBoardScreen/Screens/LogHour'
+import Engagement from 'Containers/DashBoardScreen/Screens/Engagement'
 
 import Images from 'utils/Images'
 
@@ -61,21 +63,21 @@ const routes = [
   },
 
   {
-    // path: '/registration',
+    path: '/LogHour',
     name: 'Log History',
     icon: 'nc-icon nc-bank',
     image: Images.Vector_2,
-    component: DashBoardScreen,
+    component: LogHour,
     layout: '/admin',
     isShow: true
   },
 
   {
-    // path: '/registration',
+    path: '/Engagement',
     name: 'Engagements',
     icon: 'nc-icon nc-bank',
     image: Images.Vector_3,
-    component: DashBoardScreen,
+    component: Engagement,
     layout: '/admin',
     isShow: true
   },
