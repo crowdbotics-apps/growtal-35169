@@ -1,0 +1,12 @@
+:root
+{
+--border-color:"#3A0F7D";
+--text-color:"#3A0F7D";
+--btn-background:'#3A0F7D'
+
+}
+
+.btn:active, .btn:focus{
+background-color: #fff;
+color: #3A0F7D !important;
+}

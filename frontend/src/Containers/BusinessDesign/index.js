@@ -24,9 +24,14 @@ import {
   DropdownToggle,
   InputGroupAddon,
   InputGroupText,
-  InputGroup
+  InputGroup,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter
 } from "reactstrap"
 import Select from "react-select"
+import "./style.css"
 
 function TimeTracker() {
   const [businessName, setBusinessName] = useState(false)
@@ -36,15 +41,20 @@ function TimeTracker() {
   const [fullName, setFullName] = useState(false)
   const [position, setPosition] = useState(false)
   const [mobileNo, setMobileNo] = useState(false)
-
+  const [modal, setModal] = useState(false)
+  const [modals, setModals] = useState(false)
+  const toggle = () => setModal(!modal)
+  const toggles = () => setModals(!modal)
   const handleSubmit = () => {}
 
   return (
     <>
       <div
-        style={{
-          backgroundColor: "#E8E8E8"
-        }}
+        style={
+          {
+            // backgroundColor: "#E8E8E8"
+          }
+        }
         className="content"
       >
         <div
@@ -77,7 +87,17 @@ function TimeTracker() {
                 id="navbarDropdownMenuLink"
                 nav
               >
-                <img
+                <Button
+                  className="btn-round btn"
+                  style={{
+                    backgroundColor: "#fff",
+                    color: "#3A0F7D",
+                    border: "1px solid  #3A0F7D"
+                  }}
+                >
+                  filter
+                </Button>
+                {/* <img
                   style={{
                     height: 42,
                     width: 115,
@@ -85,7 +105,7 @@ function TimeTracker() {
                     // marginRight: "12px"
                   }}
                   src={require("assets/img/filter.png")}
-                />
+                /> */}
               </DropdownToggle>
               <DropdownMenu
                 persist
@@ -184,7 +204,24 @@ function TimeTracker() {
                 id="navbarDropdownMenuLink"
                 nav
               >
-                <img
+                <Button
+                  className="btn-round"
+                  // color="secondary"
+                  style={{ backgroundColor: "#3A0F7D" }}
+                >
+                  {/* <img
+                    style={{
+                      height: 12,
+                      width: 12,
+                      // marginLeft: "20px"
+                      // marginRight: "5px",
+                      // backgroundColor: "#3A0F7D"
+                    }}
+                    src={require("assets/img/cross.png")}
+                  /> */}
+                  More Action
+                </Button>
+                {/* <img
                   style={{
                     height: 42,
                     width: 152,
@@ -192,7 +229,7 @@ function TimeTracker() {
                     marginRight: "20px"
                   }}
                   src={require("assets/img/moreAction.png")}
-                />
+                /> */}
               </DropdownToggle>
               <DropdownMenu
                 persist
@@ -256,6 +293,7 @@ function TimeTracker() {
           }}
         >
           <h3
+            onClick={toggle}
             style={{
               color: "#808080",
               fontSize: "14px",
@@ -266,6 +304,7 @@ function TimeTracker() {
             Experts
           </h3>
           <h3
+            onClick={toggle}
             style={{
               color: "#808080",
               fontSize: "14px",
@@ -276,6 +315,236 @@ function TimeTracker() {
             Actions
           </h3>
         </div>
+
+        <Modal
+          isOpen={modal}
+          toggle={toggle}
+          // className={className}
+          // external={externalCloseBtn}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+
+              margin: "20px"
+            }}
+          >
+            <h5
+              style={{
+                color: "#CACACA",
+                fontSize: "22px",
+                fountFimly: "Libre Caslon Text",
+
+                fontWeight: "700",
+                marginRight: "10px"
+              }}
+            >
+              Expert Rating
+            </h5>
+            <img
+              onClick={toggle}
+              style={{
+                height: 15,
+                width: 15,
+                marginTop: "-10px",
+                marginLeft: "20px"
+                // marginRight: "12px"
+              }}
+              src={require("assets/img/cros.png")}
+            />
+          </div>
+          <div style={{ marginLeft: "20px", marginRight: "20px" }}>
+            <Form>
+              <FormGroup>
+                <Label
+                  style={{
+                    color: "#808080",
+                    fontSize: 14,
+                    fontFamily: "khula"
+                  }}
+                >
+                  Expert
+                </Label>
+                <Input placeholder="Expert Name goes here.." type="text" />
+              </FormGroup>
+              <FormGroup>
+                <Label
+                  style={{
+                    color: "#808080",
+                    fontSize: 14,
+                    fontFamily: "khula"
+                  }}
+                >
+                  Description
+                </Label>
+                <Input
+                  id="exampleText"
+                  placeholder="Type here"
+                  name="text"
+                  type="textarea"
+                />
+              </FormGroup>
+            </Form>
+          </div>
+
+          <div
+            style={{
+              margin: "20px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <Button
+              onClick={toggle}
+              className="btn-round btn"
+              style={{
+                backgroundColor: "#fff",
+                color: "#3A0F7D",
+                border: "1px solid  #3A0F7D"
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={toggle}
+              className="btn-round"
+              // color="secondary"
+              style={{ backgroundColor: "#3A0F7D" }}
+            >
+              Submit
+            </Button>
+          </div>
+        </Modal>
+
+        <Modal
+          isOpen={modal}
+          toggle={toggle}
+          // className={className}
+          // external={externalCloseBtn}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+
+              margin: "20px"
+            }}
+          >
+            <h5
+              style={{
+                color: "#CACACA",
+                fontSize: "22px",
+                fountFimly: "Libre Caslon Text",
+
+                fontWeight: "700",
+                marginRight: "10px"
+              }}
+            >
+              Expert Hours
+            </h5>
+            <img
+              onClick={toggle}
+              style={{
+                height: 15,
+                width: 15,
+                marginTop: "-10px",
+                marginLeft: "20px"
+                // marginRight: "12px"
+              }}
+              src={require("assets/img/cros.png")}
+            />
+          </div>
+          <div style={{ marginLeft: "20px", marginRight: "20px" }}>
+            <Form>
+              <FormGroup>
+                <Label
+                  style={{
+                    color: "#808080",
+                    fontSize: 14,
+                    fontFamily: "khula"
+                  }}
+                >
+                  Name of Expert
+                </Label>
+                <Input placeholder="Type name" type="text" />
+              </FormGroup>
+              <FormGroup>
+                <Label
+                  style={{
+                    color: "#808080",
+                    fontSize: 14,
+                    fontFamily: "khula"
+                  }}
+                >
+                  Engagement
+                </Label>
+                <Input placeholder="Type engagement" type="text" />
+              </FormGroup>
+              <FormGroup>
+                <Label
+                  style={{
+                    color: "#808080",
+                    fontSize: 14,
+                    fontFamily: "khula"
+                  }}
+                >
+                  Amount of Hours to Increase
+                </Label>
+                <Input placeholder="Type engagement" type="text" />
+              </FormGroup>
+              <FormGroup>
+                <Label
+                  style={{
+                    color: "#808080",
+                    fontSize: 14,
+                    fontFamily: "khula"
+                  }}
+                >
+                  Description
+                </Label>
+                <Input
+                  id="exampleText"
+                  placeholder="Type here"
+                  name="text"
+                  type="textarea"
+                />
+              </FormGroup>
+            </Form>
+          </div>
+
+          <div
+            style={{
+              margin: "20px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <Button
+              onClick={toggle}
+              className="btn-round btn"
+              style={{
+                backgroundColor: "#fff",
+                color: "#3A0F7D",
+                border: "1px solid  #3A0F7D"
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={toggle}
+              className="btn-round"
+              // color="secondary"
+              style={{ backgroundColor: "#3A0F7D" }}
+            >
+              Submit
+            </Button>
+          </div>
+        </Modal>
       </div>
     </>
   )
