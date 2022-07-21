@@ -4,6 +4,9 @@ import LoginScreen from "Containers/LoginScreen"
 import RegisterScreen from "Containers/RegisterScreen"
 import ForgotScreen from "Containers/ForgotScreen"
 import DashBoardScreen from "Containers/DashBoardScreen"
+import ConfirmPassword from "Containers/ForgotScreen/ConfirmPassword"
+import LogHour from "Containers/DashBoardScreen/Screens/LogHour"
+import Engagement from "Containers/DashBoardScreen/Screens/Engagement"
 import BusinessDesign from "Containers/BusinessDesign"
 
 import ConfirmPassword from "Containers/ForgotScreen/ConfirmPassword"
@@ -68,16 +71,24 @@ const routes = [
     icon: "bi bi-hourglass-top",
     image: Images.Vector_1,
     component: TimeTracker,
+    layout: "/admin"
+  },
+  {
+    path: "/LogHour",
+    name: "Log History",
+    icon: "nc-icon nc-bank",
+    image: Images.Vector_2,
+    component: LogHour,
     layout: "/admin",
     isShow: true
   },
 
   {
-    // path: '/registration',
-    name: "Log History",
+    path: "/Engagement",
+    name: "Engagements",
     icon: "nc-icon nc-bank",
-    image: Images.Vector_2,
-    component: DashBoardScreen,
+    image: Images.Vector_3,
+    component: Engagement,
     layout: "/admin",
     isShow: true
   },

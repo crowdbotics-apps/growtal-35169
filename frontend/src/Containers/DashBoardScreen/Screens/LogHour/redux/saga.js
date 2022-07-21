@@ -15,7 +15,7 @@ import XHR from '../../../utils/XHR';
 // types
 import {
     LOGIN_REQUEST,
-    LOGIN_VIA_LINKEDIN_REQUEST,
+    LOGIN_VIA_FACEBOOK_REQUEST,
     LOGIN_VIA_GOOGLE_REQUEST
 } from './types';
 
@@ -23,8 +23,8 @@ import {
 import {
     loginSuccess,
     loginFaluire,
-    // loginViaFacebookSuccess,
-    // loginViaFacebookFaluire,
+    loginViaFacebookSuccess,
+    loginViaFacebookFaluire,
     loginViaGoogleSuccess,
     loginViaGoogleFaluire,
 } from './actions';
@@ -57,13 +57,13 @@ function* login({ data }) {
         )
     } catch (e) {
         const { response } = e
-        toast.error(`${response?.data?.non_field_errors[0]}`);
+        toast.error(`${response?.data?.approval_error[0]}`);
         // yield put(loginFaluire(response));
     }
 }
 
-function loginViaLinkedInAPI(data) {
-    const URL = `${BASE_URL}/api/v1/login/linkedin/`;
+function loginViaFacebookAPI(data) {
+    const URL = `${BASE_URL}/api/v1/login/facebook/`;
     const options = {
         headers: {
             Accept: 'application/json',
@@ -76,17 +76,9 @@ function loginViaLinkedInAPI(data) {
     return XHR(URL, options);
 }
 
-function* loginViaLinkedIn({ data }) {
+function* loginViaFacebook({ data }) {
     try {
-        const response = yield call(loginViaLinkedInAPI, data);
-        sessionStorage.setItem('authToken', response?.data?.token);
-        sessionStorage.setItem('user', response?.data?.user?.id.toString());
-        // yield put(loginSuccess(response?.data?.user));
-        yield put(
-            push({
-                pathname: '/admin/time_tracker'
-            })
-        )
+        const response = yield call(loginViaFacebookAPI, data);
         // sessionStorage.setItem('authToken', response?.data?.token);
 
         // yield put(loginViaFacebookSuccess(response));
@@ -97,40 +89,32 @@ function* loginViaLinkedIn({ data }) {
     }
 }
 
-function loginViaGoogleAPI(data) {
-    const URL = `${BASE_URL}/api/v1/login/google/`;
-    const options = {
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-        },
-        method: 'POST',
-        data,
-    };
+// function loginViaGoogleAPI(data) {
+//     const URL = `${BASE_URL}/api/v1/google/login/`;
+//     const options = {
+//         headers: {
+//             Accept: 'application/json',
+//             'Content-Type': 'application/json'
+//         },
+//         method: 'POST',
+//         data,
+//     };
 
-    return XHR(URL, options);
-}
+//     return XHR(URL, options);
+// }
 
-function* loginViaGoogle({ data }) {
-    try {
-        const response = yield call(loginViaGoogleAPI, data);
-        sessionStorage.setItem('authToken', response?.data?.token);
-        sessionStorage.setItem('user', response?.data?.user?.id.toString());
-        // yield put(loginSuccess(response?.data?.user));
-        yield put(
-            push({
-                pathname: '/admin/time_tracker'
-            })
-        )
-        // sessionStorage.setItem('authToken', response?.data?.key);
-    } catch (e) {
-        const { response } = e
-        // yield put(loginViaGoogleFaluire(e));
-    }
-}
+// function* loginViaGoogle({ data }) {
+//     try {
+//         const response = yield call(loginViaGoogleAPI, data);
+//         // sessionStorage.setItem('authToken', response?.data?.key);
+//     } catch (e) {
+//         const { response } = e
+//         // yield put(loginViaGoogleFaluire(e));
+//     }
+// }
 
 export default all([
     takeLatest(LOGIN_REQUEST, login),
-    takeLatest(LOGIN_VIA_LINKEDIN_REQUEST, loginViaLinkedIn),
-    takeLatest(LOGIN_VIA_GOOGLE_REQUEST, loginViaGoogle),
+    takeLatest(LOGIN_VIA_FACEBOOK_REQUEST, loginViaFacebook),
+    // takeLatest(LOGIN_VIA_GOOGLE_REQUEST, loginViaGoogle),
 ]);
