@@ -78,7 +78,6 @@ const ConfirmPassword = (props) => {
       token: `${token}`
     }
     changeNewPassword(data)
-    console.log('data....', data);
   }
 
   return (

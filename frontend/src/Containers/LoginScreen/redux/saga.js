@@ -44,10 +44,8 @@ function loginAPI(data) {
 }
 
 function* login({ data }) {
-    console.log('saga data', data);
     try {
         const response = yield call(loginAPI, data);
-        console.log('login success....', response);
         toast.success(`Login Successfully`);
         sessionStorage.setItem('authToken', response?.data?.token);
         sessionStorage.setItem('user', response?.data?.user?.id.toString());
@@ -59,7 +57,6 @@ function* login({ data }) {
         )
     } catch (e) {
         const { response } = e
-        console.log('login failure....', response);
         toast.error(`${response?.data?.approval_error[0]}`);
         // yield put(loginFaluire(response));
     }
@@ -80,10 +77,8 @@ function loginViaLinkedInAPI(data) {
 }
 
 function* loginViaLinkedIn({ data }) {
-    alert('Linked saga data...', data);
     try {
         const response = yield call(loginViaLinkedInAPI, data);
-        console.log('Linked success: ', response);
         sessionStorage.setItem('authToken', response?.data?.token);
         sessionStorage.setItem('user', response?.data?.user?.id.toString());
         // yield put(loginSuccess(response?.data?.user));
@@ -97,7 +92,6 @@ function* loginViaLinkedIn({ data }) {
         // yield put(loginViaFacebookSuccess(response));
     } catch (e) {
         const { response } = e
-        console.log('Linked error: ', response);
         // yield put(loginViaFacebookFaluire(response));
 
     }
@@ -120,7 +114,6 @@ function loginViaGoogleAPI(data) {
 function* loginViaGoogle({ data }) {
     try {
         const response = yield call(loginViaGoogleAPI, data);
-        console.log('Google success: ', response);
         sessionStorage.setItem('authToken', response?.data?.token);
         sessionStorage.setItem('user', response?.data?.user?.id.toString());
         // yield put(loginSuccess(response?.data?.user));
@@ -132,7 +125,6 @@ function* loginViaGoogle({ data }) {
         // sessionStorage.setItem('authToken', response?.data?.key);
     } catch (e) {
         const { response } = e
-        console.log('Google error: ', response);
         // yield put(loginViaGoogleFaluire(e));
     }
 }

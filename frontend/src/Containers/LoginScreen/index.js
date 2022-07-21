@@ -111,16 +111,12 @@ const LoginScreen = (props) => {
 
   useEffect(() => {
     OS(window) == 'MacOS' && setAppleBtn(true)
-    console.log(OS(window));
-    console.log(currentBrowser(window));
   }, [])
 
   const responseFacebook = (response) => {
-    console.log("response", response);
     setFbData(response);
     // setPicture(response.picture.data.url);
     // if (response.accessToken) {
-    //   console.log('accessToken...', response.accessToken);
     //   setLogin(true);
     //   loginViaFacebookRequest({ access_token: response.accessToken })
     // } else {
@@ -130,7 +126,6 @@ const LoginScreen = (props) => {
 
   // useEffect(() => {
   //   if (FbData?.accessToken) {
-  //     console.log('FbData...', FbData.accessToken);
   //     // setLogin(true);
   //     loginViaFacebookRequest({ access_token: FbData.accessToken })
   //   } else {
@@ -141,7 +136,6 @@ const LoginScreen = (props) => {
   useEffect(() => {
     const query = new URLSearchParams(props.location.search)
     const token = query.get('code')
-    console.log('token', token);
     if (window.opener && window.opener !== window) {
       const query = new URLSearchParams(props.location.search)
       const token = query.get('code')
@@ -161,17 +155,11 @@ const LoginScreen = (props) => {
   }
 
   const responseGoogle = (res) => {
-    console.log('res....', res.accessToken);
     const data = {
       access_token: res.accessToken
     }
     loginViaGoogleRequest(data)
   }
-
-
-  console.log("linkedInToken", linkedInToken);
-
-  console.log('login.........', FbData);
 
   return (
     <>
@@ -202,7 +190,7 @@ const LoginScreen = (props) => {
                           <img src={Images.email_logo} />
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input placeholder="Type eamil" type="email" onChange={e => handleOnChange("email", e.target.value)} />
+                      <Input placeholder="Type email" type="email" onChange={e => handleOnChange("email", e.target.value)} />
                     </InputGroup>
                     {state.email.error && (
                       <label style={{ color: "red", display: 'flex' }}>
@@ -317,12 +305,6 @@ const LoginScreen = (props) => {
                     <LinkedIn
                       clientId="77s7tpyzrmsjq8"
                       redirectUri={`http://localhost:3000/auth/login`}
-                      onSuccess={(code) => {
-                        console.log('s', code);
-                      }}
-                      onFailure={(error) => {
-                        console.log('f', error);
-                      }}
                     >
                       {({ linkedInLogin }) => (
                         <img

@@ -10,7 +10,6 @@ const RouteGuard = ({
   ...rest
 }) => {
   const accessToken = sessionStorage.getItem('authToken')
-  console.log('accessToken..................................', accessToken);
   return (
     <Route
       {...rest}
