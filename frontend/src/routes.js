@@ -7,7 +7,8 @@ import DashBoardScreen from "Containers/DashBoardScreen"
 import ConfirmPassword from "Containers/ForgotScreen/ConfirmPassword"
 import LogHour from "Containers/DashBoardScreen/Screens/LogHour"
 import Engagement from "Containers/DashBoardScreen/Screens/Engagement"
-import BusinessDesign from "Containers/BusinessDesign"
+import EngagementHistory from "Containers/BusinessDesign/EngagementHistory"
+import ManageHistory from "Containers/BusinessDesign/ManageHistory"
 
 // import ConfirmPassword from "Containers/ForgotScreen/ConfirmPassword"
 
@@ -56,11 +57,21 @@ const routes = [
   },
 
   {
-    path: "/business-design",
+    path: "/engagement_history",
     name: "Active Engagement History",
     icon: "nc-icon nc-bank",
     image: Images.Vector_3,
-    component: BusinessDesign,
+    component: EngagementHistory,
+    layout: "/business",
+    isShow: true
+  },
+
+  {
+    path: "/manage_history",
+    name: "Manage History",
+    icon: "nc-icon nc-bank",
+    image: Images.Vector_3,
+    component: ManageHistory,
     layout: "/business",
     isShow: true
   },

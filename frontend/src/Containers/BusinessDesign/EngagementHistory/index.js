@@ -31,7 +31,6 @@ import {
   ModalFooter
 } from "reactstrap"
 import Select from "react-select"
-import "./style.css"
 
 function TimeTracker() {
   const [businessName, setBusinessName] = useState(false)
@@ -76,7 +75,12 @@ function TimeTracker() {
           </h3>
           <div
             className="header"
-            style={{ display: "flex", alignItems: "center" }}
+            style={{
+              display: "flex",
+              alignItems: "center",
+
+              marginTop: "-20px"
+            }}
           >
             <UncontrolledDropdown>
               <DropdownToggle
@@ -95,6 +99,15 @@ function TimeTracker() {
                     border: "1px solid  #3A0F7D"
                   }}
                 >
+                  <img
+                    style={{
+                      height: "11px",
+                      width: "12px",
+                      // marginLeft: "20px",
+                      marginRight: "4px"
+                    }}
+                    src={require("assets/img/filtericon.png")}
+                  />
                   filter
                 </Button>
                 {/* <img
@@ -207,19 +220,24 @@ function TimeTracker() {
                 <Button
                   className="btn-round"
                   // color="secondary"
-                  style={{ backgroundColor: "#3A0F7D" }}
+                  style={{
+                    backgroundColor: "#3A0F7D",
+                    width: 160,
+                    marginLeft: "-20px"
+                  }}
                 >
-                  {/* <img
+                  More Action
+                  <img
                     style={{
                       height: 12,
                       width: 12,
-                      // marginLeft: "20px"
-                      // marginRight: "5px",
+                      marginLeft: "10px",
+                      marginTop: "-3px"
+                      // marginRight: "5px"
                       // backgroundColor: "#3A0F7D"
                     }}
-                    src={require("assets/img/cross.png")}
-                  /> */}
-                  More Action
+                    src={require("assets/img/down.png")}
+                  />
                 </Button>
                 {/* <img
                   style={{
@@ -309,7 +327,7 @@ function TimeTracker() {
               color: "#808080",
               fontSize: "14px",
               fountFimly: "khula",
-              marginRight: "77px"
+              marginRight: "34px"
             }}
           >
             Actions
@@ -367,7 +385,11 @@ function TimeTracker() {
                 >
                   Expert
                 </Label>
-                <Input placeholder="Expert Name goes here.." type="text" />
+                <Input
+                  placeholder="Expert Name goes here.."
+                  type="text"
+                  style={{ backgroundColor: "#EFEFEF" }}
+                />
               </FormGroup>
               <FormGroup>
                 <Label
@@ -421,7 +443,7 @@ function TimeTracker() {
 
         <Modal
           isOpen={modal}
-          toggle={toggle}
+          // toggle={toggle}
           // className={className}
           // external={externalCloseBtn}
         >
@@ -465,7 +487,8 @@ function TimeTracker() {
                   style={{
                     color: "#808080",
                     fontSize: 14,
-                    fontFamily: "khula"
+                    fontFamily: "khula",
+                    fontWeight: "600"
                   }}
                 >
                   Name of Expert
@@ -542,6 +565,382 @@ function TimeTracker() {
               style={{ backgroundColor: "#3A0F7D" }}
             >
               Submit
+            </Button>
+          </div>
+        </Modal>
+
+        <Modal
+          isOpen={modal}
+          // toggle={toggle}
+          // className={className}
+          // external={externalCloseBtn}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+
+              margin: "20px"
+            }}
+          >
+            <h5
+              style={{
+                color: "#CACACA",
+                fontSize: "22px",
+                fountFimly: "Libre Caslon Text",
+
+                fontWeight: "700",
+                marginRight: "10px"
+              }}
+            >
+              Request Engagement
+            </h5>
+            <img
+              onClick={toggle}
+              style={{
+                height: 15,
+                width: 15,
+                marginTop: "-10px",
+                marginLeft: "20px"
+                // marginRight: "12px"
+              }}
+              src={require("assets/img/cros.png")}
+            />
+          </div>
+          <div style={{ marginLeft: "20px", marginRight: "20px" }}>
+            <Form>
+              <FormGroup>
+                <Label
+                  style={{
+                    color: "#808080",
+                    fontSize: 14,
+                    fontFamily: "khula"
+                  }}
+                >
+                  Area of Expertise
+                </Label>
+                <Input placeholder="Type area of expertise" type="text" />
+              </FormGroup>
+              <FormGroup>
+                <Label
+                  style={{
+                    color: "#808080",
+                    fontSize: 14,
+                    fontFamily: "khula"
+                  }}
+                >
+                  Digital Marketing
+                </Label>
+                <Input placeholder="Type here" type="text" />
+              </FormGroup>
+              <FormGroup>
+                <Label
+                  style={{
+                    color: "#808080",
+                    fontSize: 14,
+                    fontFamily: "khula"
+                  }}
+                >
+                  Additional Information
+                </Label>
+                <Input placeholder="Type here" type="text" />
+              </FormGroup>
+              <FormGroup>
+                <Label
+                  style={{
+                    color: "#808080",
+                    fontSize: 14,
+                    fontFamily: "khula"
+                  }}
+                >
+                  Weekly Commitment
+                </Label>
+                <Input placeholder="Type here" type="text" />
+              </FormGroup>
+            </Form>
+          </div>
+
+          <div
+            style={{
+              margin: "20px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <Button
+              onClick={toggle}
+              className="btn-round btn"
+              style={{
+                backgroundColor: "#fff",
+                color: "#3A0F7D",
+                border: "1px solid  #3A0F7D"
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={toggle}
+              className="btn-round"
+              // color="secondary"
+              style={{ backgroundColor: "#3A0F7D" }}
+            >
+              Submit
+            </Button>
+          </div>
+        </Modal>
+
+        <Modal
+          isOpen={modal}
+          // toggle={toggle}
+          // className={className}
+          // external={externalCloseBtn}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+
+              margin: "20px"
+            }}
+          >
+            <h5
+              style={{
+                color: "#CACACA",
+                fontSize: "22px",
+                fountFimly: "Libre Caslon Text",
+
+                fontWeight: "700",
+                marginRight: "10px"
+              }}
+            >
+              End Engagement
+            </h5>
+            <img
+              onClick={toggle}
+              style={{
+                height: 15,
+                width: 15,
+                marginTop: "-10px",
+                marginLeft: "20px"
+                // marginRight: "12px"
+              }}
+              src={require("assets/img/cros.png")}
+            />
+          </div>
+          <div style={{ marginLeft: "20px", marginRight: "20px" }}>
+            <Form>
+              <FormGroup>
+                <Label
+                  style={{
+                    color: "#808080",
+                    fontSize: 14,
+                    fontFamily: "khula"
+                  }}
+                >
+                  Link to Schedule a call
+                </Label>
+                <Input placeholder="https://" type="text" />
+              </FormGroup>
+              <FormGroup>
+                <Label
+                  style={{
+                    color: "#808080",
+                    fontSize: 14,
+                    fontFamily: "khula"
+                  }}
+                >
+                  Description
+                </Label>
+                <Input
+                  id="exampleText"
+                  placeholder="Type here"
+                  name="text"
+                  type="textarea"
+                />
+              </FormGroup>
+            </Form>
+          </div>
+
+          <div
+            style={{
+              margin: "20px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <Button
+              onClick={toggle}
+              className="btn-round btn"
+              style={{
+                backgroundColor: "#fff",
+                color: "#3A0F7D",
+                border: "1px solid  #3A0F7D"
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={toggle}
+              className="btn-round"
+              // color="secondary"
+              style={{ backgroundColor: "#3A0F7D" }}
+            >
+              Submit
+            </Button>
+          </div>
+        </Modal>
+
+        <Modal
+          isOpen={modal}
+          toggle={toggle}
+          // className={className}
+          // external={externalCloseBtn}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+
+              margin: "20px"
+            }}
+          >
+            <h5
+              style={{
+                color: "#CACACA",
+                fontSize: "22px",
+                fountFimly: "Libre Caslon Text",
+
+                fontWeight: "700",
+                marginRight: "10px"
+              }}
+            >
+              Manage Engagement Hour
+            </h5>
+            <img
+              onClick={toggle}
+              style={{
+                height: 15,
+                width: 15,
+                marginTop: "-10px",
+                marginLeft: "20px"
+                // marginRight: "12px"
+              }}
+              src={require("assets/img/cros.png")}
+            />
+          </div>
+          <div style={{ marginLeft: "20px", marginRight: "20px" }}>
+            <Form>
+              <Label
+                style={{
+                  color: "#808080",
+                  fontSize: 14,
+                  fontFamily: "khula"
+                }}
+              >
+                Search Expert
+              </Label>
+              <InputGroup style={{}}>
+                <Input
+                  placeholder="Name of expert"
+                  type="text"
+                  style={{ color: "#000000" }}
+                  // onChange={e => handleOnChange("password", e.target.value)}
+                />
+                <InputGroupAddon addonType="prepend">
+                  <InputGroupText>
+                    <img
+                      style={{
+                        height: 16,
+                        width: 16,
+                        marginLeft: "20px"
+                        // marginRight: "12px"
+                      }}
+                      src={require("assets/img/search.png")}
+                    />
+                  </InputGroupText>
+                </InputGroupAddon>
+              </InputGroup>
+              <FormGroup>
+                <Label
+                  style={{
+                    color: "#808080",
+                    fontSize: 14,
+                    fontFamily: "khula"
+                  }}
+                >
+                  Description
+                </Label>
+                <Input
+                  id="exampleText"
+                  placeholder="Type here"
+                  name="text"
+                  type="textarea"
+                />
+              </FormGroup>
+              <div style={{ display: "flex" }}>
+                <FormGroup>
+                  <Label
+                    style={{
+                      color: "#808080",
+                      fontSize: 14,
+                      fontFamily: "khula"
+                    }}
+                  >
+                    Hour Limit
+                  </Label>
+                  <Input
+                    id="exampleText"
+                    placeholder="120"
+                    name="text"
+                    type="text"
+                    style={{ color: "#000000", width: "120px" }}
+                  />
+                </FormGroup>
+                <h5
+                  style={{
+                    color: "#808080",
+                    marginLeft: "14px",
+                    fontSize: "14px",
+                    marginTop: "42px"
+                  }}
+                >
+                  /hr
+                </h5>
+              </div>
+            </Form>
+          </div>
+
+          <div
+            style={{
+              margin: "20px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <Button
+              onClick={toggle}
+              className="btn-round btn"
+              style={{
+                backgroundColor: "#fff",
+                color: "#3A0F7D",
+                border: "1px solid  #3A0F7D"
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={toggle}
+              className="btn-round"
+              // color="secondary"
+              style={{ backgroundColor: "#3A0F7D" }}
+            >
+              Save
             </Button>
           </div>
         </Modal>
