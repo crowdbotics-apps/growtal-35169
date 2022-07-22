@@ -8,8 +8,10 @@ import ConfirmPassword from "Containers/ForgotScreen/ConfirmPassword"
 import LogHour from "Containers/DashBoardScreen/Screens/LogHour"
 import Engagement from "Containers/DashBoardScreen/Screens/Engagement"
 import BusinessDesign from "Containers/BusinessDesign"
+import Settings from "Containers/Settings"
 
-// import ConfirmPassword from "Containers/ForgotScreen/ConfirmPassword"
+import HomeIntialProfile from "Containers/HomeIntialProfile"
+import HomeInitialProfileV2 from "Containers/HomeInitialProfileV2"
 
 import Images from "utils/Images"
 
@@ -56,6 +58,24 @@ const routes = [
   },
 
   {
+    path: "/HomeIntialProfile",
+    name: "HomeIntialProfile",
+    // mini: 'LS',
+    icon: "nc-icon nc-bank",
+    component: HomeIntialProfile,
+    layout: "/auth"
+  },
+
+  {
+    path: "/HomeInitialProfileV2",
+    name: "HomeInitialProfileV2",
+    // mini: 'LS',
+    icon: "nc-icon nc-bank",
+    component: HomeInitialProfileV2,
+    layout: "/auth"
+  },
+
+  {
     path: "/business-design",
     name: "Active Engagement History",
     icon: "nc-icon nc-bank",
@@ -82,6 +102,16 @@ const routes = [
     component: LogHour,
     layout: "/admin",
     isShow: true
+  },
+
+  {
+    path: "/Settings",
+    name: "Settings",
+    icon: "nc-icon nc-bank",
+    image: Images.Vector_2,
+    component: Settings,
+    layout: "/admin",
+    // isShow: true
   },
 
   {

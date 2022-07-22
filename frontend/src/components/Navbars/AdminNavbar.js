@@ -22,6 +22,8 @@ import {
 } from "reactstrap";
 
 import avatar from 'assets/img/faces/ayo-ogunseinde-2.jpg'
+import { Link } from "react-router-dom"
+
 
 
 class AdminNavbar extends React.Component {
@@ -161,10 +163,12 @@ class AdminNavbar extends React.Component {
                 <NavItem>
                   <NavLink
                     className="btn-rotate"
-                    href="#pablo"
+                    href="/admin/Settings"
                     onClick={(e) => e.preventDefault()}
                   >
-                    <i className="nc-icon nc-settings-gear-65" />
+                    <Link to="/admin/Settings">
+                      <i className="nc-icon nc-settings-gear-65" />
+                    </Link>
                     <p>
                       <span className="d-lg-none d-md-block">Account</span>
                     </p>

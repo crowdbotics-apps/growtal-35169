@@ -30,7 +30,7 @@ function TimeTracker() {
   const [position, setPosition] = useState(false)
   const [mobileNo, setMobileNo] = useState(false)
 
-  const handleSubmit = () => {}
+  const handleSubmit = () => { }
 
   return (
     <>

@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 
 import { Button } from "reactstrap";
 
-import defaultImage from "assets/img/image_placeholder.jpg";
-import defaultAvatar from "assets/img/placeholder.jpg";
+import defaultImage from "assets/img/default_picture.png";
+import defaultAvatar from "assets/img/default_picture.png";
 
 class ImageUpload extends React.Component {
   constructor(props) {
@@ -57,7 +57,7 @@ class ImageUpload extends React.Component {
         </div>
         <div>
           {this.state.file === null ? (
-            <Button className="btn-round" onClick={() => this.handleClick()}>
+            <Button className="btn-round" color='success' onClick={() => this.handleClick()}>
               {this.props.avatar ? "Add Photo" : "Select image"}
             </Button>
           ) : (

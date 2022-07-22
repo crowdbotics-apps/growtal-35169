@@ -36,7 +36,7 @@ ReactDOM.render(
             component={props => <BusinessLayout {...props} />}
             isProtected
           />
-          <Redirect to="/business/business_design" />
+          {/* <Redirect to="/business/business_design" /> */}
 
           <Redirect to="/admin/time_tracker" />
         </Switch>
