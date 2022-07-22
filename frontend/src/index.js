@@ -11,6 +11,8 @@ import RouteGuard from "./RouterGuard"
 import AuthLayout from "layouts/Auth.js"
 import AdminLayout from "layouts/Admin.js"
 import BusinessLayout from "layouts/Business.js"
+import ExpertLayout from "layouts/Expert.js"
+
 
 import "bootstrap/dist/css/bootstrap.css"
 import "assets/scss/paper-dashboard.scss?v=1.2.0"
@@ -36,8 +38,14 @@ ReactDOM.render(
             component={props => <BusinessLayout {...props} />}
             isProtected
           />
-          <Redirect to="/business/engagement_history" />
+          <RouteGuard
+            path="/Expert"
+            component={props => <ExpertLayout {...props} />}
+            isProtected
+          />
 
+          {/* <Redirect to="/Expert/engagement_history" />
+          <Redirect to="/business/engagement_history" /> */}
           <Redirect to="/admin/time_tracker" />
         </Switch>
         {/* <Switch>

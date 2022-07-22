@@ -1,7 +1,7 @@
 
 import React from "react";
 
-import defaultImage from "assets/img/default-avatar.png";
+import defaultImage from "assets/img/facebook_img.png";
 
 class PictureUpload extends React.Component {
   constructor(props) {
