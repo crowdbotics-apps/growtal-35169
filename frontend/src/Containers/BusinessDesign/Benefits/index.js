@@ -25,7 +25,7 @@ import {
 } from "reactstrap"
 import Select from "react-select"
 
-function TimeTracker() {
+function Benefits() {
   const [businessName, setBusinessName] = useState(false)
   const [category, setCategory] = useState(false)
   const [city, setCity] = useState(false)
@@ -52,43 +52,49 @@ function TimeTracker() {
               fontSize: "22px"
             }}
           >
-            Management History
+            Benefits
           </h3>
         </div>
-        <div
-          className="header"
-          style={{
-            display: "flex",
-            justifyContent: "space-between"
-            // marginTop: "-75px"
-          }}
-        >
-          <h3
-            // onClick={toggle}
-            style={{
-              color: "#808080",
-              fontSize: "14px",
-              fountFimly: "khula",
-              marginLeft: "20px"
-            }}
-          >
-            Engagement Title
-          </h3>
-          <h3
-            onClick={toggle}
-            style={{
-              color: "#808080",
-              fontSize: "14px",
-              fountFimly: "khula",
-              marginRight: "34px"
-            }}
-          >
-            Actions
-          </h3>
+        <div style={{ marginTop: "-30px" }}>
+          <Row>
+            <Col md="12">
+              <Card>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    border: "2px solid #E2E2E2",
+                    borderRadius: "10px"
+                  }}
+                >
+                  <CardHeader>
+                    <CardTitle
+                      className="text-center"
+                      style={{ marginTop: "0px" }}
+                    >
+                      Check all the details of offer and benefits
+                    </CardTitle>
+                  </CardHeader>
+
+                  <CardFooter>
+                    <Button
+                      className="btn-round"
+                      color="info"
+                      style={{ backgroundColor: "#3A0F7D" }}
+                    >
+                      Submit
+                    </Button>
+                  </CardFooter>
+                </div>
+              </Card>
+            </Col>
+          </Row>
         </div>
+
         <Modal
           isOpen={false}
-          toggle={toggle}
+          //   toggle={toggle}
           // className={className}
           // external={externalCloseBtn}
         >
@@ -338,4 +344,4 @@ function TimeTracker() {
   )
 }
 
-export default TimeTracker
+export default Benefits

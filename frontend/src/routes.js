@@ -9,7 +9,12 @@ import LogHour from "Containers/DashBoardScreen/Screens/LogHour"
 import Engagement from "Containers/DashBoardScreen/Screens/Engagement"
 import EngagementHistory from "Containers/BusinessDesign/EngagementHistory"
 import ManageHistory from "Containers/BusinessDesign/ManageHistory"
-
+import Benefits from "Containers/BusinessDesign/Benefits"
+import Refer from "Containers/BusinessDesign/Refer"
+import ExpertHire from "Containers/BusinessDesign/ExpertHired"
+import HistoricalView from "Containers/BusinessDesign/HistoricalView"
+import SignedContracts from "Containers/BusinessDesign/SignedContracts"
+import RequestAdditionalExpert from "Containers/BusinessDesign/RequestAdditionalExpert"
 // import ConfirmPassword from "Containers/ForgotScreen/ConfirmPassword"
 
 import Images from "utils/Images"
@@ -72,6 +77,62 @@ const routes = [
     icon: "nc-icon nc-bank",
     image: Images.Vector_3,
     component: ManageHistory,
+    layout: "/business",
+    isShow: true
+  },
+  {
+    path: "/benefits",
+    name: "Benefits",
+    icon: "nc-icon nc-bank",
+    image: Images.Vector_3,
+    component: Benefits,
+    layout: "/business",
+    isShow: true
+  },
+  {
+    path: "/refer",
+    name: "Refer",
+    icon: "nc-icon nc-bank",
+    image: Images.Vector_3,
+    component: Refer,
+    layout: "/business",
+    isShow: true
+  },
+
+  {
+    path: "/expert_hire",
+    name: "Expert Hire",
+    icon: "nc-icon nc-bank",
+    image: Images.Vector_3,
+    component: ExpertHire,
+    layout: "/business",
+    isShow: true
+  },
+  {
+    path: "/historical_view",
+    name: "Historical View",
+    icon: "nc-icon nc-bank",
+    image: Images.Vector_3,
+    component: HistoricalView,
+    layout: "/business",
+    isShow: true
+  },
+  {
+    path: "/signed_contracts",
+    name: "Signed Contracts",
+    icon: "nc-icon nc-bank",
+    image: Images.Vector_3,
+    component: SignedContracts,
+    layout: "/business",
+    isShow: true
+  },
+
+  {
+    path: "/request_additional_expert",
+    name: "Request Additional Expert",
+    icon: "nc-icon nc-bank",
+    image: Images.Vector_3,
+    component: RequestAdditionalExpert,
     layout: "/business",
     isShow: true
   },

@@ -42,6 +42,7 @@ function TimeTracker() {
   const [mobileNo, setMobileNo] = useState(false)
   const [modal, setModal] = useState(false)
   const [modals, setModals] = useState(false)
+  const [image, setImage] = useState(false)
   const toggle = () => setModal(!modal)
   const toggles = () => setModals(!modal)
   const handleSubmit = () => {}
@@ -92,6 +93,9 @@ function TimeTracker() {
                 nav
               >
                 <Button
+                  onClick={() => {
+                    setImage(!image)
+                  }}
                   className="btn-round btn"
                   style={{
                     backgroundColor: "#fff",
@@ -227,17 +231,31 @@ function TimeTracker() {
                   }}
                 >
                   More Action
-                  <img
-                    style={{
-                      height: 12,
-                      width: 12,
-                      marginLeft: "10px",
-                      marginTop: "-3px"
-                      // marginRight: "5px"
-                      // backgroundColor: "#3A0F7D"
-                    }}
-                    src={require("assets/img/down.png")}
-                  />
+                  {image === false ? (
+                    <img
+                      style={{
+                        height: 8,
+                        width: 5,
+                        marginLeft: "10px",
+                        marginTop: "-3px"
+                        // marginRight: "5px"
+                        // backgroundColor: "#3A0F7D"
+                      }}
+                      src={require("assets/img/down.png")}
+                    />
+                  ) : (
+                    <img
+                      style={{
+                        height: 8,
+                        width: 5,
+                        marginLeft: "10px",
+                        marginTop: "-3px"
+                        // marginRight: "5px"
+                        // backgroundColor: "#3A0F7D"
+                      }}
+                      src={require("assets/img/up.png")}
+                    />
+                  )}
                 </Button>
                 {/* <img
                   style={{
@@ -335,7 +353,7 @@ function TimeTracker() {
         </div>
 
         <Modal
-          isOpen={modal}
+          isOpen={false}
           toggle={toggle}
           // className={className}
           // external={externalCloseBtn}
@@ -442,7 +460,7 @@ function TimeTracker() {
         </Modal>
 
         <Modal
-          isOpen={modal}
+          isOpen={false}
           // toggle={toggle}
           // className={className}
           // external={externalCloseBtn}
@@ -570,7 +588,7 @@ function TimeTracker() {
         </Modal>
 
         <Modal
-          isOpen={modal}
+          isOpen={false}
           // toggle={toggle}
           // className={className}
           // external={externalCloseBtn}
@@ -692,7 +710,7 @@ function TimeTracker() {
         </Modal>
 
         <Modal
-          isOpen={modal}
+          isOpen={false}
           // toggle={toggle}
           // className={className}
           // external={externalCloseBtn}
@@ -795,8 +813,8 @@ function TimeTracker() {
         </Modal>
 
         <Modal
-          isOpen={modal}
-          toggle={toggle}
+          isOpen={false}
+          // toggle={toggle}
           // className={className}
           // external={externalCloseBtn}
         >
@@ -938,7 +956,7 @@ function TimeTracker() {
               onClick={toggle}
               className="btn-round"
               // color="secondary"
-              style={{ backgroundColor: "#3A0F7D" }}
+              style={{ backgroundColor: "#3A0F7D", width: 154 }}
             >
               Save
             </Button>
