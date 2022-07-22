@@ -87,64 +87,52 @@ function LogHour() {
 
     const dummyData = [
         {
-            Name: 'Dakota Rice',
-            Country: 'Niger',
-            City: 'Oud-Turnhout',
-            Salary: '$36,738',
+            Name: 'Engagement Name',
+            Country: 'Client Name',
+            City: '4 hour 30 minutes',
+            Salary: '06-15-2022',
         },
         {
-            Name: 'Dakota Rice',
-            Country: 'Niger',
-            City: 'Oud-Turnhout',
-            Salary: '$36,738',
+            Name: 'Engagement Name',
+            Country: 'Client Name',
+            City: '4 hour 30 minutes',
+            Salary: '06-15-2022',
         },
         {
-            Name: 'Dakota Rice',
-            Country: 'Niger',
-            City: 'Oud-Turnhout',
-            Salary: '$36,738',
+            Name: 'Engagement Name',
+            Country: 'Client Name',
+            City: '4 hour 30 minutes',
+            Salary: '06-15-2022',
         },
         {
-            Name: 'Dakota Rice',
-            Country: 'Niger',
-            City: 'Oud-Turnhout',
-            Salary: '$36,738',
+            Name: 'Engagement Name',
+            Country: 'Client Name',
+            City: '4 hour 30 minutes',
+            Salary: '06-15-2022',
         },
         {
-            Name: 'Dakota Rice',
-            Country: 'Niger',
-            City: 'Oud-Turnhout',
-            Salary: '$36,738',
+            Name: 'Engagement Name',
+            Country: 'Client Name',
+            City: '4 hour 30 minutes',
+            Salary: '06-15-2022',
         },
         {
-            Name: 'Dakota Rice',
-            Country: 'Niger',
-            City: 'Oud-Turnhout',
-            Salary: '$36,738',
+            Name: 'Engagement Name',
+            Country: 'Client Name',
+            City: '4 hour 30 minutes',
+            Salary: '06-15-2022',
         },
         {
-            Name: 'Dakota Rice',
-            Country: 'Niger',
-            City: 'Oud-Turnhout',
-            Salary: '$36,738',
+            Name: 'Engagement Name',
+            Country: 'Client Name',
+            City: '4 hour 30 minutes',
+            Salary: '06-15-2022',
         },
         {
-            Name: 'Dakota Rice',
-            Country: 'Niger',
-            City: 'Oud-Turnhout',
-            Salary: '$36,738',
-        },
-        {
-            Name: 'Dakota Rice',
-            Country: 'Niger',
-            City: 'Oud-Turnhout',
-            Salary: '$36,738',
-        },
-        {
-            Name: 'Dakota Rice',
-            Country: 'Niger',
-            City: 'Oud-Turnhout',
-            Salary: '$36,738',
+            Name: 'Engagement Name',
+            Country: 'Client Name',
+            City: '4 hour 30 minutes',
+            Salary: '06-15-2022',
         },
     ]
 
@@ -185,10 +173,10 @@ function LogHour() {
                                 <Table>
                                     {/* <thead> */}
                                     <tr>
-                                        <th style={{ color: '#808080' }}>Name</th>
-                                        <th style={{ color: '#808080' }}>Country</th>
-                                        <th style={{ color: '#808080' }}>City</th>
-                                        <th className="text-right" style={{ color: '#808080' }}>Salary</th>
+                                        <th style={{ color: '#808080', padding: '25px' }}>Engagement</th>
+                                        <th style={{ color: '#808080' }}>Client</th>
+                                        <th style={{ color: '#808080' }}>Time</th>
+                                        <th className="text-right" style={{ color: '#808080', paddingRight: '4%' }}>Date</th>
                                     </tr>
                                     {/* </thead> */}
                                     <tbody>
