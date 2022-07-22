@@ -62,7 +62,7 @@ const routes = [
     image: Images.Vector_3,
     component: BusinessDesign,
     layout: "/business",
-    isShow: true
+    // isShow: true
   },
 
   {
@@ -71,7 +71,8 @@ const routes = [
     icon: "bi bi-hourglass-top",
     image: Images.Vector_1,
     component: TimeTracker,
-    layout: "/admin"
+    layout: "/admin",
+    isShow: true
   },
   {
     path: "/LogHour",

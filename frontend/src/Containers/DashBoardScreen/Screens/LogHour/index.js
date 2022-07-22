@@ -183,22 +183,25 @@ function LogHour() {
                             </CardHeader>
                             <CardBody>
                                 <Table>
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Country</th>
-                                            <th>City</th>
-                                            <th className="text-right">Salary</th>
-                                        </tr>
-                                    </thead>
+                                    {/* <thead> */}
+                                    <tr>
+                                        <th style={{ color: '#808080' }}>Name</th>
+                                        <th style={{ color: '#808080' }}>Country</th>
+                                        <th style={{ color: '#808080' }}>City</th>
+                                        <th className="text-right" style={{ color: '#808080' }}>Salary</th>
+                                    </tr>
+                                    {/* </thead> */}
                                     <tbody>
                                         {dummyData.map((item) => (
-                                            <tr style={{ backgroundColor: 'white' }}>
-                                                <td>{item.Name}</td>
-                                                <td>{item.Country}</td>
-                                                <td>{item.City}</td>
-                                                <td className="text-right">{item.Salary}</td>
-                                            </tr>
+                                            <>
+                                                <tr style={{ backgroundColor: 'white', marginLeft: '25px' }}>
+                                                    <td style={{ padding: '25px' }}>{item.Name}</td>
+                                                    <td>{item.Country}</td>
+                                                    <td>{item.City}</td>
+                                                    <td className="text-right" style={{ paddingRight: '25px' }}>{item.Salary}</td>
+                                                </tr>
+                                                <tr style={{ height: '12px' }}></tr>
+                                            </>
                                         ))}
                                     </tbody>
                                 </Table>
